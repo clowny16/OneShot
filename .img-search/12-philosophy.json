@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "close up hands assembling earbuds factory craftsmanship dramatic lighting black and white"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "close up hands assembling earbuds factory craftsmanship dramatic lighting black and white",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/ac4eae98ce94.jpg",
+      "caption": "",
+      "source": "Deezer",
+      "original_width": "1900px",
+      "original_height": "1900px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/821fa141e078.png",
+      "caption": "",
+      "source": "Lumafield",
+      "original_width": "1204px",
+      "original_height": "804px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/e19e5767eac9.jpg",
+      "caption": "",
+      "source": "CNET",
+      "original_width": "1200px",
+      "original_height": "675px"
+    }
+  ]
+}

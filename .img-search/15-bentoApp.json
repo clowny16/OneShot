@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "smartphone with earbuds app interface modern minimal concrete surface"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "smartphone with earbuds app interface modern minimal concrete surface",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/43586e74d714.jpg",
+      "caption": "",
+      "source": "Android Central",
+      "original_width": "1200px",
+      "original_height": "675px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/242b4ac68bed.jpg",
+      "caption": "",
+      "source": "Rokform",
+      "original_width": "1200px",
+      "original_height": "675px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/33ab5f5b1db7.jpg",
+      "caption": "",
+      "source": "Yahoo Tech",
+      "original_width": "1200px",
+      "original_height": "675px"
+    }
+  ]
+}

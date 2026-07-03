@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "sleek modern wireless earbuds stylish case product photo minimal"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "sleek modern wireless earbuds stylish case product photo minimal",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/58b4100fe058.jpg",
+      "caption": "",
+      "source": "Amazon.in",
+      "original_width": "1024px",
+      "original_height": "1024px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/7f65c2feb346.jpg",
+      "caption": "",
+      "source": "Amazon.in",
+      "original_width": "1000px",
+      "original_height": "995px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/9bbae228237e.jpg",
+      "caption": "",
+      "source": "Vonmählen",
+      "original_width": "1920px",
+      "original_height": "1400px"
+    }
+  ]
+}

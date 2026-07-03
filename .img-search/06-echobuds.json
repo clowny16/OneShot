@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "wireless earbuds with microphone charging case product photo white"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "wireless earbuds with microphone charging case product photo white",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/9cba3492c73b.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1600px",
+      "original_height": "1600px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/a6466793ec90.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1500px",
+      "original_height": "1500px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/51ea5a30c3e1.jpg",
+      "caption": "",
+      "source": "DoorDash",
+      "original_width": "1194px",
+      "original_height": "672px"
+    }
+  ]
+}

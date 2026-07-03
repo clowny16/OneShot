@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "sports wireless earbuds with ear hooks product photo white background"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "sports wireless earbuds with ear hooks product photo white background",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/38432e891afb.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "2000px",
+      "original_height": "2000px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/9705c8504891.jpg",
+      "caption": "",
+      "source": "jvcshop usa",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/dd8062560bd6.jpg",
+      "caption": "",
+      "source": "Ambassador Advertising",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    }
+  ]
+}

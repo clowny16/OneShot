@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "compact black wireless earbuds case product photography white background"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "compact black wireless earbuds case product photography white background",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/7ceb66d2b91c.png",
+      "caption": "",
+      "source": "Soundcore",
+      "original_width": "1600px",
+      "original_height": "1600px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/a78f66acc433.jpg",
+      "caption": "",
+      "source": "Bose Ultra Open Earbuds | Bose Support",
+      "original_width": "2000px",
+      "original_height": "2000px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/5d4b7139e597.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "2048px",
+      "original_height": "2560px"
+    }
+  ]
+}

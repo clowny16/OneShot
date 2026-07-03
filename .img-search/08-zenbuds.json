@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "matte black minimal wireless earbuds case product photography"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "matte black minimal wireless earbuds case product photography",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/ef1255d6ecb4.jpeg",
+      "caption": "",
+      "source": "Pexels",
+      "original_width": "3456px",
+      "original_height": "4608px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/d3d647e32530.png",
+      "caption": "",
+      "source": "TechRadar",
+      "original_width": "2372px",
+      "original_height": "1334px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/2b04e6e1248b.jpg",
+      "caption": "",
+      "source": "NextBuy",
+      "original_width": "1280px",
+      "original_height": "1280px"
+    }
+  ]
+}

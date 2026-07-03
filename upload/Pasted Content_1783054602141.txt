@@ -1,0 +1,534 @@
+expert Shopify and full-stack developer building a high-conversion website from the provided text
+Website name - OneShot
+Website for - Earbuds 
+Sections - 
+Home Page – Main landing page of your store
+Product Page – Shows product details, price, variants, add to cart
+Collection Page – Displays grouped products (categories)
+Cart Page – Shows items added before checkout
+Checkout Page – Payment and order completion (Shopify controlled)
+About Us Page – Brand story and trust-building page
+Contact Us Page – Email form, phone, address, support details
+FAQ Page – Answers common customer questions
+Shipping & Delivery Page – Shipping time, charges, policies
+Return & Refund Policy Page – Rules for returns and refunds
+
+Design - 
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURA AUDIO | Engineered for Permanence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Libre+Franklin:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container-high": "#e8e8e8",
+                "secondary": "#5e5e5e",
+                "primary": "#000000",
+                "outline": "#747878",
+                "inverse-on-surface": "#f1f1f1",
+                "on-surface-variant": "#444748",
+                "on-secondary-container": "#646464",
+                "on-tertiary-fixed-variant": "#61401b",
+                "surface-container": "#eeeeee",
+                "on-tertiary-container": "#a57c52",
+                "secondary-fixed": "#e3e2e2",
+                "surface-dim": "#dadada",
+                "inverse-surface": "#2f3131",
+                "surface-bright": "#f9f9f9",
+                "on-tertiary-fixed": "#2c1600",
+                "primary-fixed": "#e5e2e1",
+                "brushed-silver": "#D1D1D1",
+                "on-background": "#1a1c1c",
+                "on-primary-fixed-variant": "#474746",
+                "on-secondary": "#ffffff",
+                "on-surface": "#1a1c1c",
+                "canvas-white": "#FFFFFF",
+                "tertiary": "#000000",
+                "surface-container-low": "#f3f3f3",
+                "outline-variant": "#c4c7c7",
+                "tertiary-container": "#2c1600",
+                "error": "#ba1a1a",
+                "on-primary": "#ffffff",
+                "gunmetal": "#2C2E30",
+                "surface": "#f9f9f9",
+                "primary-fixed-dim": "#c8c6c5",
+                "deep-charcoal": "#121212",
+                "on-tertiary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "secondary-fixed-dim": "#c7c6c6",
+                "inverse-primary": "#c8c6c5",
+                "on-primary-fixed": "#1c1b1b",
+                "background": "#f9f9f9",
+                "secondary-container": "#e3e2e2",
+                "on-primary-container": "#858383",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#464747",
+                "tertiary-fixed": "#ffdcbd",
+                "primary-container": "#1c1b1b",
+                "leather-tan": "#BC8552",
+                "on-secondary-fixed": "#1b1c1c",
+                "on-error": "#ffffff",
+                "surface-tint": "#5f5e5e",
+                "tertiary-fixed-dim": "#eebd8e",
+                "surface-variant": "#e2e2e2",
+                "surface-container-highest": "#e2e2e2",
+                "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "gutter": "24px",
+                "container-max": "1440px",
+                "unit": "8px",
+                "margin-desktop": "64px",
+                "section-gap": "120px",
+                "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                "price-display": ["Libre Franklin"],
+                "headline-lg-mobile": ["DM Sans"],
+                "label-caps": ["IBM Plex Sans"],
+                "display-hero": ["DM Sans"],
+                "headline-lg": ["DM Sans"],
+                "body-lg": ["Libre Franklin"],
+                "body-md": ["Libre Franklin"],
+                "headline-md": ["DM Sans"]
+            },
+            "fontSize": {
+                "price-display": ["16px", {"lineHeight": "1", "fontWeight": "500"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "display-hero": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .text-stroke-thin {
+            -webkit-text-stroke: 1px currentColor;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-canvas-white text-primary font-body-md selection:bg-leather-tan selection:text-canvas-white">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-brushed-silver bg-canvas-white">
+<div class="flex justify-between items-center px-6 lg:px-16 h-20 w-full max-w-container-max mx-auto">
+<div class="font-display-hero text-[24px] tracking-tighter text-primary uppercase">
+                AURA AUDIO
+            </div>
+<div class="hidden lg:flex items-center gap-8 font-label-caps text-label-caps">
+<a class="text-primary border-b-2 border-primary pb-1 transition-colors duration-300" href="#">COLLECTIONS</a>
+<a class="text-secondary hover:text-primary transition-colors duration-300" href="#">CRAFTSMANSHIP</a>
+<a class="text-secondary hover:text-primary transition-colors duration-300" href="#">THE STUDIO</a>
+<a class="text-secondary hover:text-primary transition-colors duration-300" href="#">STORES</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="cursor-pointer transition-opacity active:opacity-70">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="cursor-pointer transition-opacity active:opacity-70">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="lg:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[921px] w-full overflow-hidden flex items-center">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="High-end lifestyle photography of a pair of premium leather and brushed titanium wireless headphones resting on a minimalist walnut wood desk. The lighting is soft and cinematic, casting gentle shadows that emphasize the grain of the leather and the cold metallic sheen of the frame. The overall atmosphere is one of quiet, expensive luxury with a light-mode neutral palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzyeFFfQ7u7RjZItrd8aWhR4RsMV7TLDWCSQiIXmeWx5Jsfkp9LtiuJxLPZKsU1HWCWkaS_W4e1QUEUxGXfRY1sIvyupcc1m0q856H2AFcAJSeirJz5hjHelw7I2a3rWST0-d9HvUwF_dF29zdcFarePBW8vXSXpHYnZTdSDgV3WSSy5CWuJ9PiwkG0ZjGTILBJx7SVzmVgpLXr5zd-H3VF4AVIwxSYAvLtQ8BOFV3FEMRJrdOr278GQ')"></div>
+<div class="absolute inset-0 bg-black/5"></div>
+</div>
+<div class="relative z-10 px-6 lg:px-16 w-full max-w-container-max mx-auto">
+<div class="max-w-2xl">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">SERIES 01: PERMANENCE</span>
+<h1 class="font-display-hero text-headline-lg lg:text-display-hero text-primary mb-6 leading-none">
+                        The Materiality <br/> of Sound
+                    </h1>
+<p class="font-body-lg text-secondary mb-10 max-w-lg">
+                        Meticulously machined from aerospace-grade titanium and wrapped in hand-stitched Italian leather. An architectural approach to personal audio.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-deep-charcoal text-canvas-white px-10 py-4 font-label-caps text-label-caps hover:bg-primary transition-all">
+                            SHOP COLLECTION
+                        </button>
+<button class="border border-brushed-silver text-primary px-10 py-4 font-label-caps text-label-caps hover:bg-surface-container-low transition-all">
+                            EXPLORE BUILD
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid (Asymmetric Editorial Layout) -->
+<section class="py-section-gap px-6 lg:px-16 max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-16">
+<h2 class="font-headline-lg text-headline-lg">Curated Materials</h2>
+<a class="font-label-caps text-label-caps border-b border-primary pb-1" href="#">VIEW ALL PIECES</a>
+</div>
+<div class="editorial-grid">
+<!-- Large Feature Card -->
+<div class="col-span-12 lg:col-span-8 group cursor-pointer">
+<div class="aspect-[16/9] overflow-hidden bg-surface-container-low border border-brushed-silver relative mb-6">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Macro close-up shot of the ear-cup of a high-end headphone showing the intricate texture of perforated full-grain leather and the precision-milled aluminum honeycomb mesh. The lighting is bright and technical, highlighting every microscopic detail of the craftsmanship. The color palette is composed of silver, soft tan, and clean whites." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4kov8PL4JwdbpOasH7lXCIhzJOBOoKFaWRqUrQ8FS3aLkMQXX4R3gHyIfAiSvK7ZveDOWkLQwQ8DP8oc1WdKxswxcscrAv-9KSWiEUSVJaNSM1MTdTwu-8sL5-A0Ro3BvnQj0Prvl0nOgtRsV1F0h_8QNAXSrjZY1kjr8VtpAEEWeMK6-MHTqXWOzrFufPLBMv5_oDtJOAyA4aXS2nF6fCsMixPZ647yy00gYF-86cM2zHvsA3wHe_A')"></div>
+<div class="absolute top-0 left-0 bg-primary text-canvas-white px-4 py-1 font-label-caps text-[10px]">NEW RELEASE</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1 uppercase">Aura Titanium Over-Ear</h3>
+<p class="font-label-caps text-label-caps text-secondary">BRUSHED TITANIUM / WHISKEY LEATHER</p>
+</div>
+<span class="font-price-display text-price-display">$1,250.00</span>
+</div>
+</div>
+<!-- Small Product 1 -->
+<div class="col-span-12 lg:col-span-4 mt-0 lg:mt-24 group cursor-pointer">
+<div class="aspect-square overflow-hidden bg-surface-container-low border border-brushed-silver mb-6">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A pair of minimalist silver in-ear monitors with a braided textile cable, presented on a pure white stone surface. The style is ultra-minimalist and technical, emphasizing the industrial design and high-quality materials. The lighting is high-key and even, perfect for an editorial product display." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAILz7qoFfj_-ZBMcZK4CPfyImvtSwqSS3dW4J6uDpYhwFWjcIFeLuB4L4lDrpvBZK3Lr4V0sK_lqkyt9oSDxdd-J1wAdiknnW2RXSn8gpqDWzy5pDYZoidMDyCKlHSSxn6cImjiCk0lcZL20Rlw1lQ-DSCWE-tptUZfG_CpkuYjHEnHhB5tiiBb39m9yB_8EcoZpdHI1yk7ZGXiw_5uOIyDAXEQTIFQKbpkFtq_qwT_97zk8vmc5fr0A')"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1 uppercase">Studio In-Ear</h3>
+<p class="font-label-caps text-label-caps text-secondary">CERAMIC / STAINLESS STEEL</p>
+</div>
+<span class="font-price-display text-price-display">$450.00</span>
+</div>
+</div>
+<!-- Small Product 2 -->
+<div class="col-span-12 lg:col-span-4 group cursor-pointer">
+<div class="aspect-square overflow-hidden bg-surface-container-low border border-brushed-silver mb-6 relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A sleek black aluminum wireless charging stand for headphones, standing alone in a minimalist grey concrete setting. The lighting is moody but bright, casting sharp geometric shadows that emphasize its structural form. The aesthetic is extremely clean, modern, and archival." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBkeGd_Y2xWDpo_-hc6Y02MAbnYm-IwHSwSXdtQdbLAjQrVAKhfS5b4TNoYLf5LZH3cOX_KV777mXMRZkiYVmTj7ukbDwvrMm_meJPSjpceZdaFjLz8y1fwFlgzvCsOUtJ2iRr4w90DHsi0HuiSC8co_ftlaU84_F0ioC7oSMHRUu8-tRDqHAeZGOIg5XhES72lUVeo0JVa4lnwtK5DWwTLWeGUs8lgMUuWpY0DuXEn_LFiYyYqx9RKxQ')"></div>
+<div class="absolute top-0 left-0 bg-outline text-canvas-white px-4 py-1 font-label-caps text-[10px]">SOLD OUT</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1 uppercase">Monolith Stand</h3>
+<p class="font-label-caps text-label-caps text-secondary">ANODIZED BLACK ALUMINUM</p>
+</div>
+<span class="font-price-display text-price-display">$180.00</span>
+</div>
+</div>
+<!-- Large Secondary Card -->
+<div class="col-span-12 lg:col-span-8 group cursor-pointer">
+<div class="aspect-[16/9] overflow-hidden bg-surface-container-low border border-brushed-silver mb-6">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Three different models of luxury headphones arranged in a professional still-life composition. One is navy leather, one is black leather, and one is tan leather. They are posed elegantly against a backdrop of architectural sketches and technical drawings. The lighting is warm and invites the viewer to appreciate the variety of premium materials." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4AyC-jeojRgZh8Qy6zP6Y204xBrSE3ToXtXAsrez2Ku-CQDSQq2gmS7_VIYpUAolEUsW4UOZwjA-cP9V4lqCP91V_D51Pe0UVdiuEUqCPYonCPz59unP5buVww4sn1dujIUuOg6tbOvwP5SdPuqDZ5M-4fWaZPscLDuWviHRJS4mQlaP-WK7cx2i8l7hG35Gm7APGCyiFwzka9Uj_ixeCo3KJJ2aq09sWWV0FfQNalbMW6bvgbATdcg')"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1 uppercase">Master Series Portfolio</h3>
+<p class="font-label-caps text-label-caps text-secondary">MULTIPLE MATERIAL FINISHES</p>
+</div>
+<div class="flex gap-2">
+<div class="w-4 h-4 rounded-full bg-deep-charcoal border border-brushed-silver"></div>
+<div class="w-4 h-4 rounded-full bg-leather-tan border border-brushed-silver"></div>
+<div class="w-4 h-4 rounded-full bg-gunmetal border border-brushed-silver"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Craftsmanship Philosophy -->
+<section class="bg-deep-charcoal py-section-gap text-canvas-white">
+<div class="px-6 lg:px-16 max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<span class="font-label-caps text-label-caps text-on-secondary-container mb-6 block">OUR PHILOSOPHY</span>
+<h2 class="font-display-hero text-headline-lg lg:text-[48px] mb-8 leading-tight uppercase">
+                            Engineered for <br/> the Next Century
+                        </h2>
+<div class="space-y-6 font-body-lg text-on-surface-variant max-w-md">
+<p>We reject the ephemeral nature of modern electronics. Our components are designed to be serviced, upgraded, and handed down.</p>
+<p>By utilizing materials that age gracefully—leather that develops a patina, metal that holds its luster—we create objects that gain character over time.</p>
+</div>
+<div class="mt-12 flex flex-wrap gap-12">
+<div>
+<p class="font-display-hero text-[32px] mb-1">0.05<span class="text-leather-tan">mm</span></p>
+<p class="font-label-caps text-[10px] text-on-secondary-container tracking-widest">MACHINING TOLERANCE</p>
+</div>
+<div>
+<p class="font-display-hero text-[32px] mb-1">Grade 5</p>
+<p class="font-label-caps text-[10px] text-on-secondary-container tracking-widest">AEROSPACE TITANIUM</p>
+</div>
+<div>
+<p class="font-display-hero text-[32px] mb-1">Hand</p>
+<p class="font-label-caps text-[10px] text-on-secondary-container tracking-widest">STITCHED IN ITALY</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] border border-gunmetal overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A dramatic black and white photograph of an artisan's hands carefully stitching a leather headband for a high-end headphone. The image is high-contrast, showing the texture of the skin and the fine thread against the dark leather. The lighting is focused and cinematic, creating a sense of intense dedication and mastery." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuALGVe0ssvIT6NXYNasK1xIF2Xp07EFJ3n5WH2koc3T5bkt8l87VsBW0KBAW9FDXqn17fbb9MNVPSJAE2L3siYXmm1DHMScIk5L01g7OJmGs6Atj1SBxn4vqSZswvL8HUA8U0z6SWTINjheefBZ2inm79yWMHv5FH4UIx6hBHDdZSPY0SHSk08SXPkkQ6oxjTD97x19p1a9B-BARn4oYid6gD8UvPdLFUIiL_yazyT21R4LK6XTk2FnRg')"></div>
+</div>
+<div class="absolute -bottom-10 -left-10 hidden lg:block w-48 h-48 border border-leather-tan/30 p-4 bg-deep-charcoal">
+<div class="w-full h-full border border-leather-tan flex items-center justify-center">
+<span class="font-label-caps text-[10px] text-center text-leather-tan">LAB TESTED<br/>10,000 HOURS</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Bento -->
+<section class="py-section-gap px-6 lg:px-16 max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Sound Card -->
+<div class="group relative overflow-hidden bg-surface-container-low aspect-[4/5] flex flex-col justify-end p-8 border border-brushed-silver">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Detailed view of the internal driver and components of a high-end audio device, showcasing the copper coils and magnets. The style is technical and editorial, using a high-key light mode aesthetic with soft shadows and sharp details. The colors are dominated by copper, silver, and matte black." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIhER1081LQEbaD3tXAcHYmTR0N_fXoA5RoGE_c7BnDX3WJFXj6YgzAMI2vuQlpujTujdCUqIsxV3D8cp-JcGA6rd6hFj2DaZ0bsSoG7ibFEop6R28UVOyopxATSITTl6-To7hR2sf9Ltq9pF4_WCrYQnraHJ5hz2oXJ6mB7ZkD6plxmsDIUguayodPWqkbfo7g4HlSz9EdAD84S9Wc8jACGoOQC63ohMdbUZNa6QNPbmfEUFspcHfkA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="relative z-10 text-canvas-white">
+<h4 class="font-headline-md text-headline-md mb-2">ACOUSTIC PURITY</h4>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Beryllium drivers tuned to an expansive, neutral soundstage for the most discerning ears.</p>
+<a class="font-label-caps text-label-caps flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+                            TECHNICAL SPECS <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Materials Card -->
+<div class="group relative overflow-hidden bg-surface-container-low aspect-[4/5] flex flex-col justify-end p-8 border border-brushed-silver">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="An assortment of raw material samples: a sheet of tumbled leather, a block of milled aluminum, and a spool of braided nylon. The composition is arranged in a minimalist, architectural style with perfect top-down lighting. The palette is neutral and sophisticated, emphasizing material honesty." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRU0Eo7aLw--0tmjfuSV_b02WP5UFFw1FnuaGMv5i68JNDmOdZ-s1GmSq2u2DYpQ2fQPAAwWOGOEK1mrUDklbwq3z2h2TtgKn5c9x6qdvgfBL_dRprRzV-WjkfWIozMLh6RXjNnYWpXyTxsDNCUO3WMbqoCoy0zw9R6ilqGSx92ImroTJDLz8qCSgor67wTH2_kD6UkNWMvSGvHLxmpYyBBGhjcAF0D51cBCM4mVS49EMdOKdSTs88Ig')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="relative z-10 text-canvas-white">
+<h4 class="font-headline-md text-headline-md mb-2">HONEST MATERIALS</h4>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">No plastics. Only the weight and durability of genuine alloys and natural textiles.</p>
+<a class="font-label-caps text-label-caps flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+                            MATERIAL ORIGIN <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- App/Connectivity Card -->
+<div class="group relative overflow-hidden bg-surface-container-low aspect-[4/5] flex flex-col justify-end p-8 border border-brushed-silver">
+<div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A smartphone displaying a sleek, minimalist audio control interface with elegant typography and fluid wave-like visualizations. The phone is resting on a textured concrete surface next to a pair of premium earbuds. The lighting is soft and modern, highlighting the intersection of hardware and software." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvytuscAc1eq-tez_mtUVP5yzWGytw-yQ7aQADwLXfCq0bsg5MPhWLPgYScVJxdmjCiIw3F2aMyFPSvxSOzoW-dshu4w1IEh6rTJeiKJxIDj0iALcuZ-JGA1WayLO7gnpRyFTkI-bKMm9mSaw6bLtC0vLOGk_jQWIciNaDFpdZ40yUTT-ocQOWLJkLMFBldoyQeAeqdHVBXLcBIIYaNcIP69q1lOhAgUOO3o8wrn6xCCqSZkzEu89x6Q')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="relative z-10 text-canvas-white">
+<h4 class="font-headline-md text-headline-md mb-2">AURA CONNECT</h4>
+<p class="font-body-md text-on-surface-variant mb-6 line-clamp-2">Seamless integration. Precision EQ tuning and firmware updates through our minimal interface.</p>
+<a class="font-label-caps text-label-caps flex items-center gap-2 group-hover:gap-4 transition-all" href="#">
+                            DOWNLOAD APP <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Social -->
+<section class="py-section-gap border-t border-brushed-silver">
+<div class="px-6 lg:px-16 max-w-container-max mx-auto text-center">
+<div class="max-w-xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-4">The Journal</h2>
+<p class="font-body-lg text-secondary mb-10">Occasional updates on new builds, architectural collaborations, and studio sessions. No clutter.</p>
+<form class="flex flex-col sm:flex-row gap-0 border-b border-primary">
+<input class="flex-grow bg-transparent border-none focus:ring-0 font-label-caps text-label-caps py-4 placeholder:text-outline-variant" placeholder="YOUR EMAIL ADDRESS" type="email"/>
+<button class="font-label-caps text-label-caps py-4 px-8 hover:text-leather-tan transition-colors" type="submit">SUBSCRIBE</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-brushed-silver py-section-gap">
+<div class="flex flex-col items-center gap-unit px-6 lg:px-16 w-full max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-primary mb-8 tracking-tighter uppercase">AURA AUDIO</div>
+<div class="flex flex-wrap justify-center gap-8 mb-12 font-label-caps text-label-caps">
+<a class="text-secondary hover:text-leather-tan transition-colors duration-300" href="#">PRIVACY</a>
+<a class="text-secondary hover:text-leather-tan transition-colors duration-300" href="#">TERMS</a>
+<a class="text-secondary hover:text-leather-tan transition-colors duration-300" href="#">WARRANTY</a>
+<a class="text-secondary hover:text-leather-tan transition-colors duration-300" href="#">CARE</a>
+<a class="text-secondary hover:text-leather-tan transition-colors duration-300" href="#">CONTACT</a>
+</div>
+<div class="flex gap-6 mb-12">
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">language</span></a>
+<a class="text-secondary hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">location_on</span></a>
+</div>
+<div class="font-label-caps text-[10px] text-outline text-center">
+                © 2024 AURA AUDIO. ENGINEERED FOR PERMANENCE.
+            </div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // Sticky Nav logic
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-sm');
+                nav.classList.remove('h-20');
+                nav.style.height = '64px';
+            } else {
+                nav.classList.remove('py-2', 'shadow-sm');
+                nav.classList.add('h-20');
+                nav.style.height = '80px';
+            }
+        });
+    </script>
+</body></html>
+
+
+
+
+Products- 
+1. OneShot AirBuds – ₹999
+Title:
+OneShot AirBuds True Wireless Earbuds, Lightweight Design, Bluetooth 5.3, Stereo Sound, All-Day Comfort
+Bullet Points:
+Lightweight ergonomic design for all-day comfort
+Stable Bluetooth 5.3 connectivity with quick pairing
+Balanced stereo sound for music and calls
+Pocket-friendly charging case for easy portability
+Ideal for daily casual listening
+
+2. OneShot NeoPods – ₹1,299
+Title:
+OneShot NeoPods Wireless Earbuds, Fast Pairing Bluetooth 5.3, HD Sound, Compact Design for Everyday Use
+Bullet Points:
+Fast auto-pairing for instant connection
+Clear HD stereo audio output
+Compact and stylish pocket-fit design
+Smooth touch controls for music & calls
+Long battery backup for daily usage
+
+3. OneShot SonicBuds – ₹1,499
+Title:
+OneShot SonicBuds Bass Boost Wireless Earbuds, Deep Bass Sound, Bluetooth 5.3, Music Lovers Edition
+Bullet Points:
+Powerful bass-enhanced audio drivers
+Immersive sound for music streaming
+Low-latency Bluetooth connection
+Comfortable in-ear fit for long listening
+Perfect for bass-heavy genres
+
+4. OneShot PulsePods – ₹1,699
+Title:
+OneShot PulsePods Sports Wireless Earbuds, Sweat Resistant, Secure Fit, Ideal for Gym & Running
+Bullet Points:
+Sweat and splash resistant design
+Secure fit for sports and workouts
+Stable Bluetooth connectivity during movement
+Lightweight build for active lifestyle
+Long battery life for training sessions
+
+5. OneShot EchoBuds – ₹1,799
+Title:
+OneShot EchoBuds Calling Earbuds with Noise Reduction, HD Voice, Wireless Bluetooth 5.3, Clear Calls
+Bullet Points:
+Noise reduction for clearer voice calls
+HD microphone for meetings & communication
+Stable wireless performance
+Comfortable all-day wear design
+Ideal for office & work-from-home users
+
+6. OneShot WavePods – ₹1,899
+Title:
+OneShot WavePods Waterproof Wireless Earbuds, IPX Water Resistant, Travel Ready Bluetooth Earbuds
+Bullet Points:
+Water-resistant build for outdoor use
+Stable connection for travel & commute
+Balanced sound quality for all genres
+Lightweight and durable design
+Long-lasting battery performance
+
+7. OneShot ZenBuds – ₹2,199
+Title:
+OneShot ZenBuds Noise Isolating Wireless Earbuds, Relaxing Sound Profile, Focus & Meditation Earbuds
+Bullet Points:
+Passive noise isolation for focus
+Soft, balanced sound tuning
+Comfortable fit for long sessions
+Ideal for meditation & study
+Smooth touch controls
+
+8. OneShot MaxTune Earbuds – ₹2,499
+Title:
+OneShot MaxTune Premium Wireless Earbuds, High Bass Drivers, HD Sound Quality, Bluetooth 5.3
+Bullet Points:
+High-performance audio drivers
+Rich bass with clear treble balance
+Lag-free Bluetooth connectivity
+Premium build quality
+Ideal for audiophiles
+
+9. OneShot AeroPods – ₹2,699
+Title:
+OneShot AeroPods Stylish Wireless Earbuds, Ultra Light Design, Premium Finish, Bluetooth 5.3 Earbuds
+Bullet Points:
+Sleek and modern aesthetic design
+Ultra-lightweight for comfort
+Smooth touch controls
+Stable connection for daily use
+Premium carry case included
+
+10. OneShot ProBeat Buds – ₹3,299
+Title:
+OneShot ProBeat Buds ANC Wireless Earbuds, Active Noise Cancellation, Deep Bass, Premium Sound Experience
+Bullet Points:
+Active Noise Cancellation (ANC) support
+Deep bass with immersive audio output
+Premium wireless performance
+Comfortable long-wear design
+Best for music & travel experience
+
+Rules - 
+1. All images must be created with original human creativity and should not appear AI-generated in style, texture, or composition 
+2. Maintain a consistent design theme across all pages, ensuring smooth visual continuity from A to B, with a clean, modern UI that matches the look and feel of a Shopify-style website, including structured layouts, balanced spacing, and professional typography
+3.All content must be written in a clear, simple, and professional tone.
+4.
+Maintain consistent brand voice across all pages.
+Avoid overly complex or technical language unless necessary.
+Headlines must be short, impactful, and easy to understand.
+Paragraphs must be concise and easy to read (no long blocks of text).
+Use active voice instead of passive voice wherever possible.
+Content must be structured with proper hierarchy (headings, subheadings, body).
+Avoid exaggeration, misleading claims, or unrealistic promises.
+Product or service descriptions must be factual and benefit-focused.
+Maintain consistent terminology across the entire website.
+Use user-friendly language that matches a modern Shopify-style website.
+Avoid filler words or unnecessary repetition.
+Ensure grammar, spelling, and punctuation are always correct.
+All content must be reviewed and approved before publishing.

@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "waterproof wireless earbuds blue accent product photo white background"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "waterproof wireless earbuds blue accent product photo white background",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/bce883c00c2c.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1600px",
+      "original_height": "1600px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/b6183b3f29c5.png",
+      "caption": "",
+      "source": "Treblab.com",
+      "original_width": "2000px",
+      "original_height": "2000px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/44063cb646a7.png",
+      "caption": "",
+      "source": "www.soundcore.com",
+      "original_width": "1088px",
+      "original_height": "1280px"
+    }
+  ]
+}

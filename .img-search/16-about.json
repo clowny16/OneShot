@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "earbuds design studio workshop modern minimal team workspace"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "earbuds design studio workshop modern minimal team workspace",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/a496effe6c62.jpg",
+      "caption": "",
+      "source": "Dreamstime.com",
+      "original_width": "1600px",
+      "original_height": "1335px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/fcbb6ab89ac7.jpg",
+      "caption": "",
+      "source": "LiquidSpace",
+      "original_width": "3500px",
+      "original_height": "2333px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/0408becf508a.png",
+      "caption": "",
+      "source": "Easy-Peasy.AI",
+      "original_width": "1024px",
+      "original_height": "1024px"
+    }
+  ]
+}

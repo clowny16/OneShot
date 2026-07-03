@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "raw materials aluminum metal texture minimalist top down flat lay"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "raw materials aluminum metal texture minimalist top down flat lay",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/ce8e823c89b2.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "957px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/312f51e21c9d.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "821px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/7505afdf62ff.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "956px"
+    }
+  ]
+}

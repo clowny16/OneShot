@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "black bass earbuds charging case product shot minimal background"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "black bass earbuds charging case product shot minimal background",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/32cda71c4485.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "1000px",
+      "original_height": "1000px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/3f953909b632.jpg",
+      "caption": "",
+      "source": "Headphones.com",
+      "original_width": "1024px",
+      "original_height": "1024px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/c2e3c446806f.jpg",
+      "caption": "",
+      "source": "Cult of Mac",
+      "original_width": "1920px",
+      "original_height": "1440px"
+    }
+  ]
+}

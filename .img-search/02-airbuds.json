@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "white wireless earbuds in charging case on clean white background product photo"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "white wireless earbuds in charging case on clean white background product photo",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/eb0bc35cc9d8.jpg",
+      "caption": "",
+      "source": "Abt Electronics",
+      "original_width": "1241px",
+      "original_height": "1300px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/67e0283d2482.jpg",
+      "caption": "",
+      "source": "Ear Fidelity",
+      "original_width": "2560px",
+      "original_height": "1707px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/0fe41e29b816.jpg",
+      "caption": "",
+      "source": "ny times",
+      "original_width": "2048px",
+      "original_height": "2048px"
+    }
+  ]
+}

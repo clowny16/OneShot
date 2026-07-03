@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "premium wireless earbuds on minimalist walnut wood desk cinematic soft lighting luxury lifestyle"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "premium wireless earbuds on minimalist walnut wood desk cinematic soft lighting luxury lifestyle",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/56828ef0248c.png",
+      "caption": "",
+      "source": "Hifi-Passion.de",
+      "original_width": "3543px",
+      "original_height": "2988px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/06a56766903e.jpg",
+      "caption": "",
+      "source": "Living Well ZA",
+      "original_width": "900px",
+      "original_height": "1200px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/0ebfb4b9c4e6.jpg",
+      "caption": "",
+      "source": "Head-Fi",
+      "original_width": "952px",
+      "original_height": "2048px"
+    }
+  ]
+}

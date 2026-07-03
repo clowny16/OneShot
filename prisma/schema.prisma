@@ -1,0 +1,89 @@
+// OneShot — Prisma schema
+// SQLite database storing catalog, cart (server-side persisted by session),
+// orders, contact messages, and newsletter subscribers.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  tagline     String
+  title       String
+  price       Int      // stored in paise (₹999 -> 99900) for clean math
+  compareAt   Int?
+  category    String   // e.g. "Everyday", "Bass", "Sports", "Calling", "Premium"
+  colorName   String
+  colorHex    String
+  imageKey    String   // key into IMAGES.products
+  badge       String?  // e.g. "NEW RELEASE", "BEST SELLER", "LIMITED"
+  bullets     String   // newline-separated bullet points
+  description String
+  features    String   // newline-separated short feature tags
+  specs       String   // newline-separated "key: value" pairs
+  rating      Float    @default(4.5)
+  reviewCount Int      @default(0)
+  inStock     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  cartItems   CartItem[]
+
+  @@index([category])
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  sessionId String
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int      @default(1)
+  colorHex  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sessionId, productId, colorHex])
+  @@index([sessionId])
+}
+
+model Order {
+  id          String   @id @default(cuid())
+  orderId     String   @unique // human-friendly ON-XXXXXX
+  sessionId   String
+  email       String
+  firstName   String
+  lastName    String
+  phone       String
+  address     String
+  city        String
+  state       String
+  pincode     String
+  subtotal    Int
+  shipping    Int
+  total       Int
+  status      String   @default("CONFIRMED")
+  itemsJson   String   // serialized snapshot of cart items
+  createdAt   DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}

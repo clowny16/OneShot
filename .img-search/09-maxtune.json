@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "premium metallic wireless earbuds case luxury product photo white"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "premium metallic wireless earbuds case luxury product photo white",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/049ee74a2107.jpg",
+      "caption": "",
+      "source": "VRS Design - VRS Design",
+      "original_width": "1500px",
+      "original_height": "1500px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/d8ace013fc11.jpg",
+      "caption": "",
+      "source": "Abt Electronics",
+      "original_width": "1300px",
+      "original_height": "1069px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/b51b2b3e3a80.jpg",
+      "caption": "",
+      "source": "Amazon.com",
+      "original_width": "2560px",
+      "original_height": "2560px"
+    }
+  ]
+}
