@@ -1,7 +1,7 @@
 "use client";
 // HomeView — editorial landing page.
-// Sections: Hero, Curated Sound (asymmetric product grid), Built for Everyday
-// (dark philosophy), Feature bento, Trust strip, Newsletter.
+// Sections: Hero slider, Curated Sound (asymmetric product grid), Built for
+// Everyday (dark philosophy), Feature bento, Trust strip, Newsletter.
 import { useMemo } from "react";
 import { useStore } from "@/lib/store";
 import { IMAGES } from "@/lib/images";
@@ -10,6 +10,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { ProductCard } from "@/components/site/ProductCard";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
 import { ProductImage } from "@/components/site/ProductImage";
+import { HeroSlider } from "@/components/site/HeroSlider";
 
 export function HomeView() {
   const products = useStore((s) => s.products);
@@ -23,81 +24,10 @@ export function HomeView() {
       .filter(Boolean) as typeof products;
   }, [products]);
 
-  const heroProduct = products.find((p) => p.slug === "probeat");
-
   return (
     <div>
-      {/* ===== Hero ===== */}
-      <section className="relative flex min-h-[640px] w-full items-center overflow-hidden lg:min-h-[760px]">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={IMAGES.hero}
-            alt="Premium wireless earbuds resting on a minimalist walnut wood desk with soft cinematic lighting"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/25" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 py-24 lg:px-16">
-          <div className="max-w-2xl">
-            <span className="mb-4 block font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white/90">
-              Series 01 · Engineered for Everyday Sound
-            </span>
-            <h1 className="mb-6 font-[var(--font-display)] text-[40px] font-medium leading-[1.05] tracking-tight text-canvas-white sm:text-[56px] lg:text-[72px]">
-              Sound.
-              <br />
-              Simplified.
-            </h1>
-            <p className="mb-10 max-w-lg font-[var(--font-body)] text-[17px] leading-relaxed text-canvas-white/85 lg:text-[19px]">
-              Wireless earbuds built for music, calls, sport, and focus.
-              Bluetooth 5.3, all-day comfort, and tuned drivers — without the
-              premium markup.
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <button
-                onClick={() => navigate({ view: "collection" })}
-                className="bg-canvas-white px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-primary transition-all hover:bg-leather-tan hover:text-canvas-white"
-              >
-                Shop Collection
-              </button>
-              <button
-                onClick={() =>
-                  heroProduct &&
-                  navigate({ view: "product", slug: heroProduct.slug })
-                }
-                className="border border-canvas-white/60 px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-canvas-white hover:text-primary"
-              >
-                Explore Flagship
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* trust strip */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-canvas-white/20 bg-black/30 backdrop-blur-sm">
-          <div className="mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-4 px-5 py-4 lg:px-16">
-            {[
-              { icon: "bluetooth", label: "Bluetooth 5.3" },
-              { icon: "battery_full", label: "Up to 36h Battery" },
-              { icon: "verified", label: "1-Year Warranty" },
-              { icon: "local_shipping", label: "Free Shipping over ₹999" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="flex items-center gap-2 text-canvas-white/90"
-              >
-                <span className="material-symbols-outlined text-[18px]">
-                  {item.icon}
-                </span>
-                <span className="font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ===== Hero Slider ===== */}
+      <HeroSlider />
 
       {/* ===== Curated Sound (Editorial Grid) ===== */}
       <section className="mx-auto w-full max-w-[1440px] px-5 py-20 lg:px-16 lg:py-28">

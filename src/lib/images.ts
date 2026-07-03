@@ -1,25 +1,51 @@
-// Auto-generated image URLs fetched from web image search.
-// All URLs are stable OSS-hosted direct links.
+// Photorealistic images generated via z-ai image CLI.
+// All images are local static assets served from /generated/.
+
+export const HERO_SLIDES = [
+  {
+    src: "/generated/hero-1.png",
+    eyebrow: "Series 01 · Engineered for Everyday Sound",
+    title: "Sound.\nSimplified.",
+    body: "Wireless earbuds built for music, calls, sport, and focus. Bluetooth 5.3, all-day comfort, and tuned drivers — without the premium markup.",
+    primaryCta: { label: "Shop Collection", view: "collection" as const },
+    secondaryCta: { label: "Explore Flagship", slug: "probeat" },
+  },
+  {
+    src: "/generated/hero-2.png",
+    eyebrow: "Move with the music",
+    title: "Built for\nmovement.",
+    body: "Sweat-resistant, secure-fit earbuds that stay locked in through every run, rep, and commute. Stable Bluetooth that never drops when you move.",
+    primaryCta: { label: "Shop Sports", view: "collection" as const, category: "Sports" },
+    secondaryCta: { label: "View All", view: "collection" as const },
+  },
+  {
+    src: "/generated/hero-3.png",
+    eyebrow: "Quiet, when you need it",
+    title: "Focus.\nUninterrupted.",
+    body: "Active Noise Cancellation and passive isolation block out the world. Tuned drivers deliver clean sound for the workday, the study session, the quiet hour.",
+    primaryCta: { label: "Shop ANC", view: "collection" as const, category: "Premium" },
+    secondaryCta: { label: "Learn More", view: "about" as const },
+  },
+];
 
 export const IMAGES = {
-  hero: "https://sfile.chatglm.cn/images-ppt/6c452a22e3fe.jpg",
-  philosophy: "https://sfile.chatglm.cn/images-ppt/ac4eae98ce94.jpg",
-  bentoAcoustic: "https://sfile.chatglm.cn/images-ppt/4cf3a627da48.png",
-  bentoMaterials: "https://sfile.chatglm.cn/images-ppt/ce8e823c89b2.jpg",
-  bentoApp: "https://sfile.chatglm.cn/images-ppt/43586e74d714.jpg",
-  about: "https://sfile.chatglm.cn/images-ppt/a496effe6c62.jpg",
-  collectionBanner: "https://sfile.chatglm.cn/images-ppt/dd8cd196e184.jpg",
+  philosophy: "/generated/philosophy.png",
+  bentoAcoustic: "/generated/bento-acoustic.png",
+  bentoMaterials: "/generated/bento-materials.png",
+  bentoApp: "/generated/bento-app.png",
+  about: "/generated/about.png",
+  collectionBanner: "/generated/collection-banner.png",
   products: {
-    "airbuds": "https://sfile.chatglm.cn/images-ppt/eb0bc35cc9d8.jpg",
-    "neopods": "https://sfile.chatglm.cn/images-ppt/7ceb66d2b91c.png",
-    "sonicbuds": "https://sfile.chatglm.cn/images-ppt/32cda71c4485.jpg",
-    "pulsepods": "https://sfile.chatglm.cn/images-ppt/38432e891afb.jpg",
-    "echobuds": "https://sfile.chatglm.cn/images-ppt/9cba3492c73b.jpg",
-    "wavepods": "https://sfile.chatglm.cn/images-ppt/bce883c00c2c.jpg",
-    "zenbuds": "https://sfile.chatglm.cn/images-ppt/ef1255d6ecb4.jpeg",
-    "maxtune": "https://sfile.chatglm.cn/images-ppt/049ee74a2107.jpg",
-    "aeropods": "https://sfile.chatglm.cn/images-ppt/58b4100fe058.jpg",
-    "probeat": "https://sfile.chatglm.cn/images-ppt/75d9c9765167.png",
+    "airbuds": "/generated/airbuds.png",
+    "neopods": "/generated/neopods.png",
+    "sonicbuds": "/generated/sonicbuds.png",
+    "pulsepods": "/generated/pulsepods.png",
+    "echobuds": "/generated/echobuds.png",
+    "wavepods": "/generated/wavepods.png",
+    "zenbuds": "/generated/zenbuds.png",
+    "maxtune": "/generated/maxtune.png",
+    "aeropods": "/generated/aeropods.png",
+    "probeat": "/generated/probeat.png",
   }
 } as const;
 
