@@ -11,10 +11,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 type Answers = {
-  usage?: string;   // e.g. "Music", "Calls", "Sport", "Focus", "Mixed"
+  productType?: string; // e.g. "Earbuds", "Headphones", "Speakers", "Gaming Audio", "Wired Earphones", "Audio Accessories"
+  usage?: string;   // e.g. "Music", "Calls", "Sport", "Focus", "Party"
   budget?: string;  // e.g. "under-1500", "1500-2500", "above-2500"
-  priority?: string;// e.g. "Bass", "Clarity", "Battery", "Comfort", "ANC"
-  feature?: string; // e.g. "ANC", "Waterproof", "Long battery", "Lightweight"
+  priority?: string;// e.g. "Bass", "Clarity", "Battery", "Comfort", "ANC", "Volume"
+  feature?: string; // legacy field, no longer asked in quiz
 };
 
 export async function POST(req: NextRequest) {
@@ -27,6 +28,7 @@ export async function POST(req: NextRequest) {
       slug: p.slug,
       name: p.name,
       price: p.price / 100,
+      productType: p.productType,
       category: p.category,
       tagline: p.tagline,
       bullets: p.bullets.split("\n").filter(Boolean),
@@ -37,17 +39,17 @@ export async function POST(req: NextRequest) {
   const catalogText = products
     .map(
       (p) =>
-        `- ${p.name} (slug: ${p.slug}) | ₹${p.price} | ${p.category} | ${p.tagline} | features: ${p.features.join(", ")} | highlights: ${p.bullets.join("; ")}`,
+        `- ${p.name} (slug: ${p.slug}) | ₹${p.price} | Type: ${p.productType} | ${p.tagline} | features: ${p.features.join(", ")} | highlights: ${p.bullets.join("; ")}`,
     )
     .join("\n");
 
   const userBrief = `My answers:
+- Product type wanted: ${a.productType ?? "No preference"}
 - Main use: ${a.usage ?? "Not specified"}
 - Budget: ${a.budget ?? "No preference"}
-- Top priority: ${a.priority ?? "Not specified"}
-- Must-have feature: ${a.feature ?? "None"}`;
+- Top priority: ${a.priority ?? "Not specified"}`;
 
-  const systemPrompt = `You are OneShot's product-matching engine. Based on the user's quiz answers, pick the single best earbuds model from the catalog below, plus one alternative. Respond ONLY with valid JSON (no markdown, no prose) in exactly this shape:
+  const systemPrompt = `You are OneShot's product-matching engine. Based on the user's quiz answers, pick the single best product from the catalog below, plus one alternative. Respond ONLY with valid JSON (no markdown, no prose) in exactly this shape:
 
 {
   "primary": { "slug": "<slug>", "reason": "<one short sentence why it fits>" },
@@ -60,9 +62,10 @@ ${catalogText}
 
 Rules:
 - Both slugs MUST come from the catalog above. Never invent slugs.
-- Match budget bands: "under-1500" means price < 1500; "1500-2500" means 1500-2500; "above-2500" means > 2500. "No preference" = any.
-- Match usage: Music→bass/clarity models; Calls→EchoBuds; Sport→PulsePods/WavePods; Focus→ZenBuds/ProBeat; Mixed→everyday.
-- Match priority/feature to the product's features array (ANC, Waterproof, etc.).
+- FIRST filter by productType. If the user picked "Earbuds", only consider products with Type: Earbuds. If "Headphones", consider both Wired Headphones and Wireless Headphones. If "Speakers", consider Portable Speakers and Premium Speakers. If "Gaming Audio", only Gaming Audio. If "Wired Earphones", only Wired Earphones. If "Audio Accessories", only Audio Accessories.
+- Then match budget bands: "under-1500" means price < 1500; "1500-2500" means 1500-2500; "above-2500" means > 2500. "No preference" = any.
+- Then match usage: Music→bass/clarity models; Calls→EchoBuds or ClearSound H2; Sport→PulsePods/WavePods; Focus→ZenBuds/ProBeat; Party→PartyBlast/MegaBoom.
+- Then match priority to the product's features (ANC, Waterproof, Long battery, bass, volume, etc.).
 - Keep reasons under 12 words. Summary under 20 words.`;
 
   try {
@@ -119,10 +122,27 @@ function deterministicMatch(
     slug: string;
     name: string;
     price: number;
+    productType: string;
     category: string;
     features: string[];
   }[],
 ) {
+  // First filter by productType (map quiz answer to actual productTypes)
+  const typeMatch = (p: { productType: string }) => {
+    if (!a.productType || a.productType === "No preference") return true;
+    if (a.productType === "Headphones")
+      return (
+        p.productType === "Wired Headphones" ||
+        p.productType === "Wireless Headphones"
+      );
+    if (a.productType === "Speakers")
+      return (
+        p.productType === "Portable Speakers" ||
+        p.productType === "Premium Speakers"
+      );
+    return p.productType === a.productType;
+  };
+
   const inBudget = (p: { price: number }) => {
     switch (a.budget) {
       case "under-1500":
@@ -136,24 +156,39 @@ function deterministicMatch(
     }
   };
 
-  const score = (p: { category: string; features: string[]; slug: string }) => {
+  const score = (p: { productType: string; features: string[]; slug: string }) => {
     let s = 0;
-    if (a.usage === "Calls" && p.slug === "echobuds") s += 5;
-    if (a.usage === "Sport" && (p.slug === "pulsepods" || p.slug === "wavepods"))
+    const featText = p.features.join(" ").toLowerCase();
+    if (a.usage === "Calls" && (p.slug === "echobuds" || p.slug === "clearsound-h2"))
       s += 5;
-    if (a.usage === "Focus" && (p.slug === "zenbuds" || p.slug === "probeat"))
+    if (
+      a.usage === "Sport" &&
+      (p.slug === "pulsepods" || p.slug === "wavepods" || p.slug === "flexwire")
+    )
       s += 5;
-    if (a.usage === "Music" && (p.slug === "sonicbuds" || p.slug === "maxtune"))
+    if (
+      a.usage === "Focus" &&
+      (p.slug === "zenbuds" || p.slug === "probeat" || p.slug === "neosound-h4")
+    )
       s += 5;
-    if (a.priority === "ANC" && p.features.join(" ").toLowerCase().includes("anc"))
+    if (
+      a.usage === "Music" &&
+      (p.slug === "sonicbuds" || p.slug === "maxtune" || p.slug === "beatpro-h3")
+    )
       s += 5;
-    if (a.priority === "Bass" && p.slug === "sonicbuds") s += 3;
-    if (a.feature === "Waterproof" && p.slug === "wavepods") s += 5;
-    if (a.feature === "ANC" && p.slug === "probeat") s += 5;
+    if (
+      a.usage === "Party" &&
+      (p.slug === "partyblast-s3" || p.slug === "megaboom-s4" || p.slug === "basstube-bt1")
+    )
+      s += 5;
+    if (a.priority === "ANC" && featText.includes("anc")) s += 5;
+    if (a.priority === "Bass" && featText.includes("bass")) s += 3;
+    if (a.priority === "Volume" && p.productType.includes("Speaker")) s += 5;
+    if (a.priority === "Battery" && featText.includes("battery")) s += 3;
     return s;
   };
 
-  const eligible = products.filter(inBudget);
+  const eligible = products.filter(typeMatch).filter(inBudget);
   const ranked = [...eligible].sort((x, y) => score(y) - score(x));
   const primary = ranked[0] ?? products[0];
   const alt = ranked[1] ?? products[1] ?? products[0];

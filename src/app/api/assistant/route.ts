@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
       slug: p.slug,
       name: p.name,
       price: p.price / 100,
+      productType: p.productType,
       category: p.category,
       tagline: p.tagline,
       colorName: p.colorName,
@@ -49,11 +50,11 @@ export async function POST(req: NextRequest) {
   const catalogText = products
     .map(
       (p) =>
-        `- ${p.name} (slug: ${p.slug}) | ₹${p.price} | ${p.category} | ${p.tagline} | ${p.bullets.join("; ")}`,
+        `- ${p.name} (slug: ${p.slug}) | ₹${p.price} | Type: ${p.productType} | ${p.tagline} | ${p.bullets.join("; ")}`,
     )
     .join("\n");
 
-  const systemPrompt = `You are "OneShot Assistant", the friendly shopping assistant for OneShot, an Indian wireless earbuds brand. You help visitors choose the right earbuds, compare models, explain features, and answer questions about shipping, returns, and warranty.
+  const systemPrompt = `You are "OneShot Assistant", the friendly shopping assistant for OneShot, an Indian audio brand. OneShot sells earbuds, wired earphones, wired and wireless headphones, Bluetooth speakers (portable + premium), gaming headsets, and audio accessories. You help visitors choose the right product, compare models, explain features, and answer questions about shipping, returns, and warranty.
 
 Here is the complete OneShot catalog (prices in INR rupees):
 ${catalogText}

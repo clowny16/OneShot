@@ -6,7 +6,7 @@ import type { CartDTO, ProductDTO, ViewName } from "@/lib/types";
 
 type NavTarget =
   | { view: "home" }
-  | { view: "collection"; category?: string }
+  | { view: "collection"; productType?: string; category?: string }
   | { view: "product"; slug: string }
   | { view: "cart" }
   | { view: "checkout" }
@@ -19,6 +19,7 @@ type NavTarget =
 type State = {
   view: ViewName;
   productSlug: string | null;
+  collectionProductType: string | null;
   collectionCategory: string | null;
   cart: CartDTO | null;
   cartLoading: boolean;
@@ -90,6 +91,7 @@ type State = {
 export const useStore = create<State>((set, get) => ({
   view: "home",
   productSlug: null,
+  collectionProductType: null,
   collectionCategory: null,
   cart: null,
   cartLoading: false,
@@ -124,6 +126,7 @@ export const useStore = create<State>((set, get) => ({
     if (target.view === "collection") {
       set({
         view: "collection",
+        collectionProductType: target.productType ?? null,
         collectionCategory: target.category ?? null,
       });
     } else if (target.view === "product") {

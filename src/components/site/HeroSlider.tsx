@@ -280,8 +280,12 @@ function onPrimary(
   const cta = slide.primaryCta;
   if ("slug" in cta) {
     navigate({ view: "product", slug: cta.slug });
-  } else if ("category" in cta) {
-    navigate({ view: "collection", category: cta.category });
+  } else if ("productType" in cta || "category" in cta) {
+    navigate({
+      view: "collection",
+      productType: "productType" in cta ? cta.productType : undefined,
+      category: "category" in cta ? cta.category : undefined,
+    });
   } else {
     navigate({ view: cta.view });
   }
@@ -294,8 +298,12 @@ function onSecondary(
   const cta = slide.secondaryCta;
   if ("slug" in cta) {
     navigate({ view: "product", slug: cta.slug });
-  } else if ("category" in cta) {
-    navigate({ view: "collection", category: cta.category });
+  } else if ("productType" in cta || "category" in cta) {
+    navigate({
+      view: "collection",
+      productType: "productType" in cta ? cta.productType : undefined,
+      category: "category" in cta ? cta.category : undefined,
+    });
   } else {
     navigate({ view: cta.view });
   }

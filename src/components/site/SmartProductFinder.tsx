@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 
 type Answers = {
+  productType?: string;
   usage?: string;
   budget?: string;
   priority?: string;
@@ -27,14 +28,28 @@ const QUESTIONS: {
   options: { id: string; label: string; icon: string; desc: string }[];
 }[] = [
   {
+    key: "productType",
+    title: "What are you looking for?",
+    subtitle: "Pick the type of audio product you want.",
+    options: [
+      { id: "Earbuds", label: "Earbuds", icon: "headphones", desc: "True wireless freedom" },
+      { id: "Headphones", label: "Headphones", icon: "headset", desc: "Wired or wireless over-ear" },
+      { id: "Speakers", label: "Speakers", icon: "speaker", desc: "Portable or home audio" },
+      { id: "Gaming Audio", label: "Gaming", icon: "sports_esports", desc: "Headsets for play" },
+      { id: "Wired Earphones", label: "Wired", icon: "cable", desc: "Classic in-ear" },
+      { id: "Audio Accessories", label: "Accessories", icon: "settings_input_component", desc: "Adapters & docks" },
+    ],
+  },
+  {
     key: "usage",
-    title: "How will you use them most?",
+    title: "How will you use it most?",
     subtitle: "Pick the one that fits your day best.",
     options: [
       { id: "Music", label: "Music", icon: "music_note", desc: "Streaming, podcasts, albums" },
       { id: "Calls", label: "Calls", icon: "call", desc: "Meetings, work-from-home" },
       { id: "Sport", label: "Sport", icon: "directions_run", desc: "Gym, running, workouts" },
       { id: "Focus", label: "Focus", icon: "self_improvement", desc: "Study, meditation, deep work" },
+      { id: "Party", label: "Party", icon: "celebration", desc: "Gatherings & events" },
     ],
   },
   {
@@ -57,17 +72,7 @@ const QUESTIONS: {
       { id: "Battery", label: "Battery", icon: "battery_full", desc: "Longest playback" },
       { id: "Comfort", label: "Comfort", icon: "spa", desc: "All-day lightweight fit" },
       { id: "ANC", label: "Quiet", icon: "noise_aware", desc: "Block the world out" },
-    ],
-  },
-  {
-    key: "feature",
-    title: "Any must-have feature?",
-    subtitle: "Optional — pick one if it matters.",
-    options: [
-      { id: "ANC", label: "ANC", icon: "noise_control_off", desc: "Active noise cancellation" },
-      { id: "Waterproof", label: "Waterproof", icon: "water_drop", desc: "For rain & sweat" },
-      { id: "Long battery", label: "Long battery", icon: "battery_charging_full", desc: "36h+ total" },
-      { id: "Lightweight", label: "Lightweight", icon: "feather", desc: "Under 4g per bud" },
+      { id: "Volume", label: "Loud", icon: "volume_up", desc: "Room-filling sound" },
     ],
   },
 ];

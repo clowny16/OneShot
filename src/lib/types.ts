@@ -7,6 +7,7 @@ export type ProductDTO = {
   title: string;
   price: number; // rupees
   compareAt: number | null;
+  productType: string;
   category: string;
   colorName: string;
   colorHex: string;

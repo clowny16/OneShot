@@ -1,5 +1,8 @@
 "use client";
-// CollectionView — filterable product grid.
+// CollectionView — filterable product grid with two-tier filtering.
+// Primary filter = productType (Earbuds, Wired Earphones, Headphones, Speakers,
+// Gaming, Accessories). When productType === "Earbuds", a secondary row of
+// use-case sub-categories (Everyday, Bass, Sports, etc.) appears.
 import { useMemo, useState } from "react";
 import { useStore } from "@/lib/store";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -7,7 +10,19 @@ import { Reveal } from "@/components/site/Reveal";
 import { IMAGES } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
-const CATEGORIES = [
+const PRODUCT_TYPES = [
+  "All",
+  "Earbuds",
+  "Wired Earphones",
+  "Wired Headphones",
+  "Wireless Headphones",
+  "Portable Speakers",
+  "Premium Speakers",
+  "Gaming Audio",
+  "Audio Accessories",
+] as const;
+
+const EARBUDS_SUBCATS = [
   "All",
   "Everyday",
   "Bass",
@@ -28,25 +43,36 @@ type SortId = (typeof SORTS)[number]["id"];
 
 export function CollectionView() {
   const products = useStore((s) => s.products);
-  const category = useStore((s) => s.collectionCategory);
+  const storeProductType = useStore((s) => s.collectionProductType);
+  const storeCategory = useStore((s) => s.collectionCategory);
   const navigate = useStore((s) => s.navigate);
 
-  const [activeCat, setActiveCat] = useState<string>(category ?? "All");
+  const [activeType, setActiveType] = useState<string>(
+    storeProductType ?? "All",
+  );
+  const [activeSub, setActiveSub] = useState<string>(
+    storeCategory ?? "All",
+  );
   const [sort, setSort] = useState<SortId>("featured");
   const [search, setSearch] = useState("");
 
-  // Sync local category with the store value when navigating from footer/nav.
-  // Using the "adjust state during render" pattern instead of useEffect.
-  const [prevCategory, setPrevCategory] = useState(category);
-  if (category !== prevCategory) {
-    setPrevCategory(category);
-    setActiveCat(category ?? "All");
+  // Sync local filters with the store values when navigating from footer/nav.
+  const [prevKey, setPrevKey] = useState(`${storeProductType}|${storeCategory}`);
+  const newKey = `${storeProductType}|${storeCategory}`;
+  if (newKey !== prevKey) {
+    setPrevKey(newKey);
+    setActiveType(storeProductType ?? "All");
+    setActiveSub(storeCategory ?? "All");
   }
 
   const filtered = useMemo(() => {
     let list = [...products];
-    if (activeCat !== "All") {
-      list = list.filter((p) => p.category === activeCat);
+    if (activeType !== "All") {
+      list = list.filter((p) => p.productType === activeType);
+    }
+    // Secondary sub-category filter only applies within Earbuds
+    if (activeType === "Earbuds" && activeSub !== "All") {
+      list = list.filter((p) => p.category === activeSub);
     }
     if (search.trim()) {
       const q = search.toLowerCase();
@@ -54,7 +80,7 @@ export function CollectionView() {
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.tagline.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q),
+          p.productType.toLowerCase().includes(q),
       );
     }
     switch (sort) {
@@ -68,7 +94,8 @@ export function CollectionView() {
         list.sort((a, b) => b.rating - a.rating);
         break;
       default:
-        // featured: keep a curated order by slug list
+        // featured: keep a curated order — earbuds first by their order, then
+        // other types by price ascending.
         const order = [
           "probeat",
           "aeropods",
@@ -81,13 +108,20 @@ export function CollectionView() {
           "neopods",
           "airbuds",
         ];
-        list.sort(
-          (a, b) =>
-            order.indexOf(a.slug) - order.indexOf(b.slug),
-        );
+        list.sort((a, b) => {
+          const ia = order.indexOf(a.slug);
+          const ib = order.indexOf(b.slug);
+          if (ia !== -1 && ib !== -1) return ia - ib;
+          if (ia !== -1) return -1;
+          if (ib !== -1) return 1;
+          return a.price - b.price;
+        });
     }
     return list;
-  }, [products, activeCat, sort, search]);
+  }, [products, activeType, activeSub, sort, search]);
+
+  // Show the earbuds sub-category row only when Earbuds is the active type.
+  const showSubcats = activeType === "Earbuds";
 
   return (
     <div className="pt-20">
@@ -104,37 +138,63 @@ export function CollectionView() {
             The Collection
           </span>
           <h1 className="font-[var(--font-display)] text-[36px] font-medium leading-[1.05] tracking-tight text-canvas-white sm:text-[52px]">
-            All Earbuds
+            All Audio
           </h1>
           <p className="mt-3 max-w-xl font-[var(--font-body)] text-[16px] text-canvas-white/80">
-            {products.length} models tuned for music, calls, sport, and focus.
-            Free shipping across India on orders over ₹999.
+            {products.length} products across earbuds, headphones, speakers,
+            gaming, and accessories. Free shipping across India on orders over
+            ₹999.
           </p>
         </div>
       </section>
 
       {/* Filter bar */}
       <section className="sticky top-16 z-30 border-b border-brushed-silver bg-canvas-white/95 backdrop-blur lg:top-20">
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-5 py-4 lg:px-16 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mx-auto w-full max-w-[1440px] px-5 py-3 lg:px-16">
+          {/* Primary: product type chips */}
           <div className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">
-            {CATEGORIES.map((cat) => (
+            {PRODUCT_TYPES.map((type) => (
               <button
-                key={cat}
-                onClick={() => setActiveCat(cat)}
+                key={type}
+                onClick={() => {
+                  setActiveType(type);
+                  setActiveSub("All");
+                }}
                 className={cn(
                   "shrink-0 px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold transition-colors",
-                  activeCat === cat
+                  activeType === type
                     ? "bg-primary text-canvas-white"
                     : "text-secondary hover:text-primary",
                 )}
               >
-                {cat}
+                {type}
               </button>
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1 lg:w-56 lg:flex-none">
+          {/* Secondary: earbuds sub-categories (only when Earbuds selected) */}
+          {showSubcats && (
+            <div className="no-scrollbar mt-2 flex gap-1 overflow-x-auto border-t border-brushed-silver pt-2">
+              {EARBUDS_SUBCATS.map((sub) => (
+                <button
+                  key={sub}
+                  onClick={() => setActiveSub(sub)}
+                  className={cn(
+                    "shrink-0 px-3 py-1.5 font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold transition-colors",
+                    activeSub === sub
+                      ? "border-b-2 border-leather-tan text-primary"
+                      : "text-secondary hover:text-primary",
+                  )}
+                >
+                  {sub}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Search + sort row */}
+          <div className="mt-3 flex items-center gap-3">
+            <div className="relative flex-1 lg:max-w-xs">
               <span className="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-[18px] text-outline">
                 search
               </span>
@@ -142,7 +202,7 @@ export function CollectionView() {
                 type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search earbuds"
+                placeholder="Search products"
                 className="w-full border border-brushed-silver bg-surface-container-low py-2 pl-9 pr-3 font-[var(--font-body)] text-[14px] text-primary placeholder:text-outline focus:bg-canvas-white focus:outline-none"
               />
             </div>
@@ -168,10 +228,11 @@ export function CollectionView() {
           <p className="font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-secondary">
             {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
           </p>
-          {(activeCat !== "All" || search) && (
+          {(activeType !== "All" || activeSub !== "All" || search) && (
             <button
               onClick={() => {
-                setActiveCat("All");
+                setActiveType("All");
+                setActiveSub("All");
                 setSearch("");
               }}
               className="font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-primary underline-offset-4 hover:underline"
@@ -187,11 +248,12 @@ export function CollectionView() {
               search_off
             </span>
             <p className="mt-4 font-[var(--font-display)] text-[20px] font-medium text-primary">
-              No earbuds match your filters.
+              No products match your filters.
             </p>
             <button
               onClick={() => {
-                setActiveCat("All");
+                setActiveType("All");
+                setActiveSub("All");
                 setSearch("");
               }}
               className="mt-4 border-b border-primary pb-1 font-[var(--font-label)] text-[12px] uppercase tracking-[0.1em] font-semibold text-primary"

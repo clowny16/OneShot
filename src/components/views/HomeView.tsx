@@ -28,6 +28,30 @@ export function HomeView() {
       .filter(Boolean) as typeof products;
   }, [products]);
 
+  // Best sellers: one hero product per product type, curated across the catalog.
+  const bestSellers = useMemo(() => {
+    const order = [
+      "airbuds",
+      "maxwave-h5",
+      "boombox-s2",
+      "gamex-pro-g2",
+    ];
+    return order
+      .map((slug) => products.find((p) => p.slug === slug))
+      .filter(Boolean) as typeof products;
+  }, [products]);
+
+  const categories = [
+    { name: "Earbuds", icon: "headphones", desc: "True wireless freedom" },
+    { name: "Wired Earphones", icon: "cable", desc: "Classic, reliable sound" },
+    { name: "Wired Headphones", icon: "headset", desc: "Over-ear comfort" },
+    { name: "Wireless Headphones", icon: "headset_mic", desc: "Bluetooth over-ear" },
+    { name: "Portable Speakers", icon: "speaker", desc: "Sound on the go" },
+    { name: "Premium Speakers", icon: "home_speaker", desc: "Room-filling audio" },
+    { name: "Gaming Audio", icon: "sports_esports", desc: "Low-latency play" },
+    { name: "Audio Accessories", icon: "cable", desc: "Adapters & docks" },
+  ] as const;
+
   return (
     <div>
       {/* ===== Deal banner ===== */}
@@ -221,26 +245,72 @@ export function HomeView() {
         </div>
       </section>
 
-      {/* ===== Best Sellers strip ===== */}
+      {/* ===== Shop by Category ===== */}
       <section className="border-y border-brushed-silver bg-surface-container-lowest">
         <div className="mx-auto w-full max-w-[1440px] px-5 py-16 lg:px-16 lg:py-20">
-          <Reveal className="mb-10 flex items-end justify-between gap-4">
+          <Reveal className="mb-10">
+            <span className="mb-3 block font-[var(--font-label)] text-[11px] uppercase tracking-[0.15em] font-semibold text-secondary">
+              Browse the range
+            </span>
             <h2 className="font-[var(--font-display)] text-[28px] font-medium leading-tight tracking-tight text-primary sm:text-[36px]">
-              Best Sellers
+              Shop by category
             </h2>
-            <button
-              onClick={() => navigate({ view: "collection" })}
-              className="border-b border-primary pb-1 font-[var(--font-label)] text-[12px] uppercase tracking-[0.1em] font-semibold text-primary transition-colors hover:text-leather-tan"
-            >
-              View All →
-            </button>
           </Reveal>
-          <Reveal className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-            {products.slice(0, 4).map((p) => (
-              <ProductCard key={p.id} product={p} />
+          <Reveal className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+            {categories.map((cat) => (
+              <button
+                key={cat.name}
+                onClick={() =>
+                  navigate({
+                    view: "collection",
+                    productType: cat.name,
+                  })
+                }
+                className="group flex flex-col items-start gap-3 border border-brushed-silver bg-canvas-white p-5 text-left transition-all hover:border-primary hover:shadow-sm"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-container-low text-primary transition-colors group-hover:bg-primary group-hover:text-canvas-white">
+                  <span className="material-symbols-outlined text-[22px]">
+                    {cat.icon}
+                  </span>
+                </span>
+                <div>
+                  <div className="font-[var(--font-display)] text-[15px] font-medium uppercase tracking-tight text-primary">
+                    {cat.name}
+                  </div>
+                  <div className="font-[var(--font-body)] text-[12px] text-secondary">
+                    {cat.desc}
+                  </div>
+                </div>
+                <span className="mt-auto flex items-center gap-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-leather-tan">
+                  Shop now
+                  <span className="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">
+                    arrow_forward
+                  </span>
+                </span>
+              </button>
             ))}
           </Reveal>
         </div>
+      </section>
+
+      {/* ===== Best Sellers strip ===== */}
+      <section className="mx-auto w-full max-w-[1440px] px-5 py-16 lg:px-16 lg:py-20">
+        <Reveal className="mb-10 flex items-end justify-between gap-4">
+          <h2 className="font-[var(--font-display)] text-[28px] font-medium leading-tight tracking-tight text-primary sm:text-[36px]">
+            Best Sellers
+          </h2>
+          <button
+            onClick={() => navigate({ view: "collection" })}
+            className="border-b border-primary pb-1 font-[var(--font-label)] text-[12px] uppercase tracking-[0.1em] font-semibold text-primary transition-colors hover:text-leather-tan"
+          >
+            View All →
+          </button>
+        </Reveal>
+        <Reveal className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+          {bestSellers.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </Reveal>
       </section>
 
       {/* ===== Recently viewed ===== */}

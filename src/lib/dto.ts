@@ -11,6 +11,7 @@ export function toProductDTO(p: Product): ProductDTO {
     title: p.title,
     price: p.price / 100,
     compareAt: p.compareAt ? p.compareAt / 100 : null,
+    productType: p.productType,
     category: p.category,
     colorName: p.colorName,
     colorHex: p.colorHex,

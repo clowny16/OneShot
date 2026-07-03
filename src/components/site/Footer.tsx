@@ -9,10 +9,11 @@ export function Footer() {
     {
       title: "Shop",
       links: [
-        { label: "All Earbuds", view: { view: "collection" } },
-        { label: "Everyday", view: { view: "collection", category: "Everyday" } },
-        { label: "Sports", view: { view: "collection", category: "Sports" } },
-        { label: "Premium", view: { view: "collection", category: "Premium" } },
+        { label: "All Products", view: { view: "collection" } },
+        { label: "Earbuds", view: { view: "collection", productType: "Earbuds" } },
+        { label: "Headphones", view: { view: "collection", productType: "Wireless Headphones" } },
+        { label: "Speakers", view: { view: "collection", productType: "Portable Speakers" } },
+        { label: "Gaming", view: { view: "collection", productType: "Gaming Audio" } },
       ],
     },
     {

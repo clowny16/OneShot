@@ -136,3 +136,53 @@ Stage Summary:
 - 8 new components, all wired into AppShell/HomeView/ProductView/TopNavBar
 - Store extended with wishlist + recently-viewed (localStorage) + 5 overlay states
 - Full storefront still works end-to-end; all new features browser-verified
+
+---
+Task ID: IMG-3
+Agent: general-purpose (image-generation)
+Task: Generate 21 new product images (wired earphones, headphones, speakers, gaming, accessories) via z-ai image CLI
+
+Work Log:
+- Generated 21/21 images via `z-ai image` CLI to /public/generated/ — wrote a Python driver (.img3-gen.py) that runs 2 calls in parallel per batch with 3s stagger, retries up to 2x on failure, and skips files that already exist (for resumability across bash timeouts).
+- Hit a sustained 429 rate limit on the last item (basstube-bt1.png) at the end of batch 11. Retried with progressively longer waits (5s, 30s, 60s) inline, then kicked off a 240s-delayed background job (nohup + disown) that successfully generated the file after the API rate-limit window reset. Total: 21/21 succeeded.
+- Re-encoded all 21 new files from JPEG bytes to true PNG format via Python PIL (same approach as IMG task), so `file <path>` reports "PNG image data" and Next.js static serving sends correct Content-Type: image/png headers. All 21 re-encoded successfully, 0 errors.
+- Verified all 21 new files exist (Missing count: 0) and confirmed a random sample of 8 are valid 1024x1024 PNG image data via `file`. Total files in /public/generated/ now 40 (19 prior + 21 new).
+- Updated /home/z/my-project/src/lib/images.ts — added 21 new product keys to IMAGES.products (now 31 total). All existing 10 product keys + section keys + HERO_SLIDES array left untouched. Each new key maps to "/generated/<key>.png".
+- tsc --noEmit shows 15 errors both before AND after the change (verified via git stash comparison) — all are pre-existing strict-indexing issues in components that index IMAGES.products with a `string` slug instead of `ImageKey`. No new errors introduced by IMG-3. (Note: prior IMG worklog claim that "tsc --noEmit passes" appears to have been inaccurate; those errors were already present.)
+
+Stage Summary:
+- 21 photorealistic product PNGs in /public/generated/ (all 1024x1024, white background, product centered, with Canon EOS R5 / 100mm macro / f/8 / "NOT illustration/3D render" photorealism cues)
+- images.ts now has 31 product image paths (10 original earbuds + 21 new across wired earphones / wired+wireless headphones / Bluetooth speakers / premium speakers / gaming headsets / accessories)
+- All 21 new image keys match the requested slugs exactly: wirebeat-100, wirebeat-pro, flexwire, studiobass-h1, clearsound-h2, beatpro-h3, airbass-x1, neosound-h4, maxwave-h5, boommini-s1, boombox-s2, partyblast-s3, megaboom-s4, pulsetower-t1, echocube-t2, sonicbar-sb1, gamepulse-g1, gamex-pro-g2, audiolink-a1, sounddock-d1, basstube-bt1
+
+---
+Task ID: EXPAND-1..9
+Agent: main (Z.ai Code orchestrator)
+Task: Add 21 new products (wired earphones, wired/wireless headphones, portable/premium speakers, gaming audio, accessories) with photorealistic images + two-tier category filtering
+
+Work Log:
+- Task IMG-3 (subagent): Generated 21 photorealistic product images via z-ai image CLI to /public/generated/ (wired earphones, over-ear headphones, portable speakers, tower/cube/soundbar speakers, gaming headsets, adapter/dock/subwoofer). All prompts engineered for real-photo look (white seamless bg, Canon EOS R5 100mm macro, "NOT illustration/3D render"). Re-encoded to true PNG via PIL. Updated images.ts with 21 new product keys (31 total).
+- Task 2 (Schema + Seed): Added `productType` field to Product schema. Updated seed: existing 10 earbuds get productType="Earbuds", added 21 new products across 7 new productTypes (Wired Earphones, Wired Headphones, Wireless Headphones, Portable Speakers, Premium Speakers, Gaming Audio, Audio Accessories) with full details (titles, bullets, specs, features, ratings, badges). Force-reset DB + re-seeded → 31 products.
+- Task 3 (Store): Extended NavTarget to support productType + category. Added collectionProductType to state. Updated navigate() to set both productType + category.
+- Task 4 (Collection view): Replaced single-category filter with two-tier filter — primary row of 9 productType chips (All + 8 types), conditional secondary row of earbuds use-case sub-categories (Everyday/Bass/Sports/Calling/Focus/Premium) shown only when Earbuds is selected. Updated banner title to "All Audio", empty-state text, clear-filters logic.
+- Task 5 (HomeView): Added "Shop by Category" section with 8 category cards (icon + name + desc + Shop now CTA, navigates to collection filtered by productType). Fixed Best Sellers to curate across types (airbuds, maxwave-h5, boombox-s2, gamex-pro-g2) instead of cheapest-4.
+- Task 6 (Footer): Updated Shop column links to reference product types (All Products, Earbuds, Headphones, Speakers, Gaming).
+- Task 7 (AI assistant + Finder): Updated /api/assistant system prompt to include productType in catalog + rebranded from "earbuds brand" to "audio brand". Updated /api/finder to filter by productType first (maps quiz "Headphones"→Wired+Wireless, "Speakers"→Portable+Premium). Updated SmartProductFinder quiz: Q1 is now "What are you looking for?" (productType), added Party usage + Volume priority options. Updated deterministic fallback to handle productType + new usage/priority values.
+- Task 8 (images.ts): Done by subagent — 31 product image paths total.
+- Task 9 (Verify): Restarted dev server (Prisma client singleton was stale, only returned 10 products; restart cleared it → 31 products). Agent Browser verification:
+  * Home: "Shop by category" section shows all 8 category cards (VLM confirmed: Earbuds, Wired Earphones, Wired Headphones, Wireless Headphones, Portable Speakers, Premium Speakers, Gaming Audio, Audio Accessories)
+  * Collection: shows "31 pieces" with all 9 productType filter chips
+  * Clicked "Portable Speakers" filter → 4 pieces (BoomMini/BoomBox/PartyBlast/MegaBoom) — correct
+  * Clicked BoomMini S1 → product detail page renders with image, Add to Cart, Buy It Now, specs, related products (BoomBox/PartyBlast). 8/8 images loaded, 0 failed.
+  * VLM verified speaker image: "real product photo, clean/neat on white background, no visual issues"
+  * AI assistant: asked "I want wireless headphones for travel under 2000" → correctly recommended OneShot AirBass X1 (wireless headphone, ₹1499) — catalog-aware across all 31 products
+  * All new product images load (0 failed across pages)
+  * Lint: 0 errors. Dev log: clean.
+
+Stage Summary:
+- Catalog expanded from 10 → 31 products across 8 product types (Earbuds, Wired Earphones, Wired Headphones, Wireless Headphones, Portable Speakers, Premium Speakers, Gaming Audio, Audio Accessories)
+- 21 new photorealistic product images generated and verified
+- Two-tier category filtering in Collection (productType primary + earbuds sub-category)
+- New "Shop by Category" section on home with 8 category cards
+- AI assistant + Product Finder updated to be catalog-aware across all product types
+- Full storefront verified end-to-end with 31 products

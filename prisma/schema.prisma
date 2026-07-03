@@ -19,7 +19,8 @@ model Product {
   title       String
   price       Int      // stored in paise (₹999 -> 99900) for clean math
   compareAt   Int?
-  category    String   // e.g. "Everyday", "Bass", "Sports", "Calling", "Premium"
+  productType String   // top-level group: "Earbuds", "Wired Earphones", "Wired Headphones", "Wireless Headphones", "Portable Speakers", "Premium Speakers", "Gaming Audio", "Audio Accessories"
+  category    String   // sub-classification (for earbuds: use-case like "Sports"; for others, mirrors productType)
   colorName   String
   colorHex    String
   imageKey    String   // key into IMAGES.products
