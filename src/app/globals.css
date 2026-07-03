@@ -356,4 +356,85 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  /* ===== Quick View modal animations ===== */
+  /* Staggered entrance for modal content elements */
+  @keyframes qv-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes qv-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes qv-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .qv-anim-image {
+    animation: qv-scale-in 0.4s ease-out both;
+  }
+  .qv-anim-content > * {
+    animation: qv-fade-up 0.5s ease-out both;
+  }
+  .qv-anim-content > *:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .qv-anim-content > *:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .qv-anim-content > *:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .qv-anim-content > *:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .qv-anim-content > *:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+  .qv-anim-content > *:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  .qv-anim-content > *:nth-child(7) {
+    animation-delay: 0.35s;
+  }
+  .qv-anim-content > *:nth-child(8) {
+    animation-delay: 0.4s;
+  }
+  .qv-anim-close {
+    animation: qv-fade-in 0.3s ease-out 0.2s both;
+  }
+
+  /* Button press feedback */
+  @keyframes btn-press {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.97);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .btn-press:active {
+    animation: btn-press 0.2s ease;
+  }
 }

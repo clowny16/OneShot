@@ -54,7 +54,7 @@ export function QuickView() {
       }}
     >
       <DialogContent
-        className="max-w-4xl gap-0 overflow-hidden rounded-xl border border-brushed-silver bg-canvas-white p-0 shadow-2xl sm:rounded-xl"
+        className="!max-w-4xl gap-0 overflow-hidden rounded-xl border border-brushed-silver bg-canvas-white p-0 shadow-2xl sm:rounded-xl"
         aria-describedby={undefined}
         showCloseButton={false}
       >
@@ -63,19 +63,19 @@ export function QuickView() {
         </DialogTitle>
         {product && (
           <div className="relative grid grid-cols-1 md:grid-cols-2">
-            {/* Custom close button — larger, visible, with hover state */}
+            {/* Custom close button — animated entrance */}
             <button
               onClick={close}
               aria-label="Close quick view"
-              className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-canvas-white/90 text-primary shadow-sm backdrop-blur transition-all hover:scale-105 hover:bg-error hover:text-on-dark"
+              className="qv-anim-close absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-canvas-white/90 text-primary shadow-sm backdrop-blur transition-all hover:scale-110 hover:bg-error hover:text-on-dark active:scale-95"
             >
               <span className="material-symbols-outlined text-[20px]">
                 close
               </span>
             </button>
 
-            {/* Image */}
-            <div className="relative aspect-square overflow-hidden bg-surface-container-low md:aspect-auto">
+            {/* Image — scale-in animation */}
+            <div className="qv-anim-image relative aspect-square overflow-hidden bg-surface-container-low md:aspect-auto">
               <ProductImage
                 imageKey={product.imageKey}
                 alt={product.title}
@@ -94,8 +94,8 @@ export function QuickView() {
               )}
             </div>
 
-            {/* Info */}
-            <div className="flex max-h-[85vh] flex-col overflow-y-auto scrollbar-thin p-6 lg:p-8">
+            {/* Info — staggered entrance on children */}
+            <div className="qv-anim-content flex max-h-[85vh] flex-col overflow-y-auto scrollbar-thin p-6 lg:p-8">
               {/* Product type + wishlist */}
               <div className="flex items-center justify-between pr-8">
                 <span className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-leather-tan">
@@ -103,12 +103,12 @@ export function QuickView() {
                 </span>
                 <WishlistButton
                   slug={product.slug}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-brushed-silver text-secondary hover:border-error hover:text-error"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-brushed-silver text-secondary transition-all hover:scale-110 hover:border-error hover:text-error active:scale-95"
                   size={16}
                 />
               </div>
 
-              <h2 className="mt-3 font-[var(--font-display)] text-[26px] font-medium leading-tight tracking-tight text-primary">
+              <h2 className="mt-3 font-[var(--font-display)] text-[24px] font-medium leading-tight tracking-tight text-primary sm:text-[26px]">
                 {product.name}
               </h2>
               <p className="mt-1.5 font-[var(--font-body)] text-[14px] text-secondary">
@@ -124,7 +124,7 @@ export function QuickView() {
 
               {/* Price */}
               <div className="mt-5 flex items-end gap-3">
-                <span className="font-[var(--font-display)] text-[32px] font-medium leading-none text-primary">
+                <span className="font-[var(--font-display)] text-[30px] font-medium leading-none text-primary sm:text-[32px]">
                   {formatINRFromRupees(product.price)}
                 </span>
                 {product.compareAt && product.compareAt > product.price && (
@@ -163,12 +163,13 @@ export function QuickView() {
                 ))}
               </ul>
 
-              {/* Actions — balanced 2-col grid, rounded, with hover shadow */}
-              <div className="mt-7 grid grid-cols-2 gap-3">
+              {/* Actions — full-width stacked on mobile, 2-col on sm+,
+                  nowrap so text never overflows */}
+              <div className="mt-7 grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
                 <button
                   onClick={onAdd}
                   disabled={adding}
-                  className="flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.12em] font-semibold text-on-primary transition-all hover:bg-deep-charcoal hover:shadow-md disabled:opacity-50"
+                  className="btn-press flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-4 py-3.5 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-on-primary transition-all hover:bg-deep-charcoal hover:shadow-md active:scale-95 disabled:opacity-50 sm:text-[12px] sm:tracking-[0.12em]"
                 >
                   <span className="material-symbols-outlined text-[18px]">
                     {adding ? "progress_activity" : "shopping_bag"}
@@ -177,9 +178,9 @@ export function QuickView() {
                 </button>
                 <button
                   onClick={onView}
-                  className="flex items-center justify-center gap-2 rounded-lg border border-primary px-5 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.12em] font-semibold text-primary transition-all hover:bg-surface-container-low"
+                  className="btn-press flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-primary px-4 py-3.5 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-primary transition-all hover:bg-surface-container-low active:scale-95 sm:text-[12px] sm:tracking-[0.12em]"
                 >
-                  Details
+                  View Details
                   <span className="material-symbols-outlined text-[16px]">
                     arrow_forward
                   </span>
