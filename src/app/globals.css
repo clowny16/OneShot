@@ -10,10 +10,14 @@
    Type: DM Sans (display), Libre Franklin (body), IBM Plex Sans (label caps).
    ========================================================================== */
 
-@theme inline {
-  /* Brand palette */
+/* ===========================================================================
+   Color tokens — defined as plain CSS custom properties on :root and .dark
+   so that Tailwind utilities (bg-surface, text-primary, etc.) pick up the
+   cascaded value. @theme inline below maps these to Tailwind color utilities.
+   ========================================================================== */
+:root {
   --color-canvas-white: #ffffff;
-  --color-on-dark: #ffffff;       /* always-white text for dark accent sections */
+  --color-on-dark: #ffffff;
   --color-surface: #f9f9f9;
   --color-surface-bright: #ffffff;
   --color-surface-container-lowest: #ffffff;
@@ -43,21 +47,70 @@
   --color-error: #ba1a1a;
   --color-success: #2f7d4f;
 
-  /* shadcn-compatible aliases (kept for ui components) */
-  --color-background: var(--color-surface);
-  --color-foreground: var(--color-on-surface);
-  --color-card: var(--color-canvas-white);
-  --color-card-foreground: var(--color-on-surface);
-  --color-popover: var(--color-canvas-white);
-  --color-popover-foreground: var(--color-on-surface);
-  --color-muted: var(--color-surface-container);
-  --color-muted-foreground: var(--color-secondary);
-  --color-accent: var(--color-surface-container-low);
-  --color-accent-foreground: var(--color-on-surface);
-  --color-destructive: var(--color-error);
-  --color-border: var(--color-brushed-silver);
-  --color-input: var(--color-surface-container-high);
-  --color-ring: var(--color-on-surface-variant);
+  --color-background: #f9f9f9;
+  --color-foreground: #1a1c1c;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1c1c;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1c1c;
+  --color-muted: #eeeeee;
+  --color-muted-foreground: #5e5e5e;
+  --color-accent: #f3f3f3;
+  --color-accent-foreground: #1a1c1c;
+  --color-destructive: #ba1a1a;
+  --color-border: #d1d1d1;
+  --color-input: #e8e8e8;
+  --color-ring: #444748;
+}
+
+@theme inline {
+  /* Map CSS custom properties to Tailwind color utilities.
+     References the live variable so .dark overrides cascade through. */
+  --color-canvas-white: var(--color-canvas-white);
+  --color-on-dark: var(--color-on-dark);
+  --color-surface: var(--color-surface);
+  --color-surface-bright: var(--color-surface-bright);
+  --color-surface-container-lowest: var(--color-surface-container-lowest);
+  --color-surface-container-low: var(--color-surface-container-low);
+  --color-surface-container: var(--color-surface-container);
+  --color-surface-container-high: var(--color-surface-container-high);
+  --color-surface-container-highest: var(--color-surface-container-highest);
+  --color-surface-dim: var(--color-surface-dim);
+
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+  --color-deep-charcoal: var(--color-deep-charcoal);
+  --color-gunmetal: var(--color-gunmetal);
+  --color-brushed-silver: var(--color-brushed-silver);
+  --color-leather-tan: var(--color-leather-tan);
+  --color-leather-tan-soft: var(--color-leather-tan-soft);
+
+  --color-secondary: var(--color-secondary);
+  --color-on-secondary: var(--color-on-secondary);
+  --color-on-secondary-container: var(--color-on-secondary-container);
+  --color-outline: var(--color-outline);
+  --color-outline-variant: var(--color-outline-variant);
+  --color-on-surface: var(--color-on-surface);
+  --color-on-surface-variant: var(--color-on-surface-variant);
+  --color-inverse-surface: var(--color-inverse-surface);
+
+  --color-error: var(--color-error);
+  --color-success: var(--color-success);
+
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+  --color-popover: var(--color-popover);
+  --color-popover-foreground: var(--color-popover-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+  --color-destructive: var(--color-destructive);
+  --color-border: var(--color-border);
+  --color-input: var(--color-input);
+  --color-ring: var(--color-ring);
 
   /* Radius scale (tight, editorial) */
   --radius-sm: 0.125rem;
@@ -147,21 +200,22 @@
   --color-error: #f87171;
   --color-success: #4ade80;
 
-  /* shadcn-compatible aliases */
-  --color-background: var(--color-surface);
-  --color-foreground: var(--color-on-surface);
-  --color-card: var(--color-canvas-white);
-  --color-card-foreground: var(--color-on-surface);
-  --color-popover: var(--color-canvas-white);
-  --color-popover-foreground: var(--color-on-surface);
-  --color-muted: var(--color-surface-container);
-  --color-muted-foreground: var(--color-secondary);
-  --color-accent: var(--color-surface-container-low);
-  --color-accent-foreground: var(--color-on-surface);
-  --color-destructive: var(--color-error);
-  --color-border: var(--color-brushed-silver);
-  --color-input: var(--color-surface-container-high);
-  --color-ring: var(--color-leather-tan);
+  /* shadcn-compatible aliases — explicit dark values (not var() refs) so
+     they cascade correctly into Tailwind utility classes. */
+  --color-background: #121212;
+  --color-foreground: #f0f0f0;
+  --color-card: #1a1a1a;
+  --color-card-foreground: #f0f0f0;
+  --color-popover: #1a1a1a;
+  --color-popover-foreground: #f0f0f0;
+  --color-muted: #262626;
+  --color-muted-foreground: #a8a8a8;
+  --color-accent: #1e1e1e;
+  --color-accent-foreground: #f0f0f0;
+  --color-destructive: #f87171;
+  --color-border: #3a3a3a;
+  --color-input: #2e2e2e;
+  --color-ring: #d9b48a;
 }
 
 @layer base {
