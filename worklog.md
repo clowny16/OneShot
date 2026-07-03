@@ -98,3 +98,41 @@ Stage Summary:
 - All images now locally-generated photorealistic PNGs in /public/generated/ (no external OSS dependency)
 - Hero is now a 3-slide auto-rotating carousel with manual controls, progress bar, and per-slide CTAs
 - Full storefront still works end-to-end (home slider -> collection -> product -> cart -> checkout)
+
+---
+Task ID: ENHANCE-1..8
+Agent: main (Z.ai Code orchestrator)
+Task: Add 8 enhancement features — AI assistant, product finder, cart drawer, quick view, wishlist, recently viewed, sticky buy bar, urgency/social proof
+
+Work Log:
+- Task 1 (Backend AI): Built /api/assistant (multi-turn LLM chat with full OneShot catalog context, emits [PRODUCTS:slug] blocks parsed into tappable product chips; in-memory conversation store per session) and /api/finder (4-question quiz → LLM returns JSON {primary, alternative, summary}; deterministic fallback if LLM fails). Fixed regex to allow whitespace in slug lists.
+- Task 2 (Store): Extended Zustand store with wishlist (localStorage-backed), recentlyViewed (localStorage-backed, 8-item cap), and overlay state for cartDrawer/wishlistDrawer/assistant/finder/quickView + initFromStorage + trackView actions.
+- Task 3 (AI Assistant): Built AssistantWidget — floating chat button (bottom-right, pulsing dot) + slide-out chat panel with product-catalog-aware LLM, quick-reply chips, typing indicator, tappable product cards in replies.
+- Task 4 (Product Finder): Built SmartProductFinder — modal quiz with 4 questions (usage/budget/priority/feature), progress bar, loading animation, LLM recommendation screen with primary pick (large card + rationale) + alternative + retake/browse-all CTAs.
+- Task 5 (Cart Drawer): Built CartDrawer — slide-out cart with free-shipping progress, line items with qty controls + remove, subtotal, Checkout + View full cart buttons. Nav cart icon now opens drawer instead of navigating.
+- Task 6 (Quick View): Built QuickView — modal product preview (image + price + rating + color + bullets + Add to Cart + View Details) triggered from product card hover button.
+- Task 7 (Wishlist): Built WishlistButton (heart toggle, localStorage-persisted) + WishlistDrawer (slide-out list with Quick view + Remove per item). Added heart to ProductCard (top-right) and ProductView (next to title). Nav shows wishlist count badge.
+- Task 8 (Recently viewed): Built RecentlyViewed strip on home (horizontal scroll, 6 items, only shows after viewing a product). trackView fires on ProductView mount.
+- Task 9 (Sticky buy bar): Built StickyBuyBar — mobile-only fixed bottom bar on product pages, appears after scrolling 600px, shows product name + price + Add to Cart.
+- Task 10 (Urgency/social proof): Built DealBanner (live 36h countdown, persists in localStorage) at top of home. Added "X bought today" (deterministic per slug) to every ProductCard.
+- Wired all overlays into AppShell, added DealBanner + finder CTA + RecentlyViewed to HomeView, added wishlist heart + StickyBuyBar to ProductView, added finder CTA + wishlist icon to TopNavBar.
+- Fixed accessibility warnings (aria-describedby={undefined} on DialogContent in QuickView + Finder).
+- Lint: 0 errors (1 benign font warning). Dev log: clean.
+
+Agent Browser verification (all passed):
+- Deal banner countdown renders + ticks live ("Festive drop — up to 30% off · Ends in 35:59:49")
+- Floating assistant button present; opened chat, sent "I want earbuds for gym under 2000", LLM replied with PulsePods + WavePods recommendation (catalog-aware)
+- Product Finder: completed 4-step quiz (Sport → ₹1500-2500 → Bass → Waterproof), LLM recommended PulsePods (primary) + WavePods (alternative) with rationale "Sport earbuds with sweat resistance"
+- Cart drawer: opens from nav cart icon, shows free-shipping progress + line items + subtotal ₹3,299 + Checkout/View full cart
+- Quick View: opened from product card, shows product with Add to Cart + View Details; Add to Cart updated cart badge to 1
+- Wishlist: heart click on card updated nav badge to 1; wishlist drawer shows saved item with Quick view/Remove
+- Mobile sticky buy bar: on product page after scroll, bar appears with name + price + Add to Cart
+- Product cards show "X bought today" social proof + wishlist heart + Quick view button
+- No console errors, no runtime errors
+
+Stage Summary:
+- 8 new features shipped: AI Shopping Assistant (LLM), Smart Product Finder (LLM quiz), Cart Drawer, Quick View, Wishlist, Recently Viewed, Sticky Mobile Buy Bar, Deal Countdown + Social Proof
+- 2 new API routes (/api/assistant, /api/finder) using z-ai-web-dev-sdk LLM
+- 8 new components, all wired into AppShell/HomeView/ProductView/TopNavBar
+- Store extended with wishlist + recently-viewed (localStorage) + 5 overlay states
+- Full storefront still works end-to-end; all new features browser-verified

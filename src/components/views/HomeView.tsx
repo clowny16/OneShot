@@ -1,7 +1,8 @@
 "use client";
 // HomeView — editorial landing page.
-// Sections: Hero slider, Curated Sound (asymmetric product grid), Built for
-// Everyday (dark philosophy), Feature bento, Trust strip, Newsletter.
+// Sections: Deal banner, Hero slider, Find-Your-Earbuds CTA, Curated Sound
+// (asymmetric product grid), Built for Everyday (dark philosophy), Feature
+// bento, Best Sellers, Recently viewed, Trust strip, Newsletter.
 import { useMemo } from "react";
 import { useStore } from "@/lib/store";
 import { IMAGES } from "@/lib/images";
@@ -11,10 +12,13 @@ import { ProductCard } from "@/components/site/ProductCard";
 import { NewsletterForm } from "@/components/site/NewsletterForm";
 import { ProductImage } from "@/components/site/ProductImage";
 import { HeroSlider } from "@/components/site/HeroSlider";
+import { DealBanner } from "@/components/site/DealBanner";
+import { RecentlyViewed } from "@/components/site/RecentlyViewed";
 
 export function HomeView() {
   const products = useStore((s) => s.products);
   const navigate = useStore((s) => s.navigate);
+  const openFinder = useStore((s) => s.openFinder);
 
   // Pick 4 products for the editorial grid in a curated order.
   const featured = useMemo(() => {
@@ -26,8 +30,43 @@ export function HomeView() {
 
   return (
     <div>
+      {/* ===== Deal banner ===== */}
+      <DealBanner />
+
       {/* ===== Hero Slider ===== */}
       <HeroSlider />
+
+      {/* ===== Find Your Earbuds CTA ===== */}
+      <section className="border-b border-brushed-silver bg-surface-container-lowest">
+        <div className="mx-auto w-full max-w-[1440px] px-5 py-6 lg:px-16">
+          <button
+            onClick={openFinder}
+            className="group flex w-full flex-col items-start justify-between gap-4 text-left sm:flex-row sm:items-center"
+          >
+            <div className="flex items-center gap-4">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-canvas-white">
+                <span className="material-symbols-outlined text-[22px]">
+                  auto_awesome
+                </span>
+              </span>
+              <div>
+                <p className="font-[var(--font-display)] text-[18px] font-medium text-primary sm:text-[20px]">
+                  Not sure which earbuds fit you?
+                </p>
+                <p className="font-[var(--font-body)] text-[14px] text-secondary">
+                  Take the 30-second quiz — we'll match you to the right pair.
+                </p>
+              </div>
+            </div>
+            <span className="flex items-center gap-2 bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all group-hover:bg-deep-charcoal">
+              Find Your Earbuds
+              <span className="material-symbols-outlined text-[16px]">
+                arrow_forward
+              </span>
+            </span>
+          </button>
+        </div>
+      </section>
 
       {/* ===== Curated Sound (Editorial Grid) ===== */}
       <section className="mx-auto w-full max-w-[1440px] px-5 py-20 lg:px-16 lg:py-28">
@@ -203,6 +242,9 @@ export function HomeView() {
           </Reveal>
         </div>
       </section>
+
+      {/* ===== Recently viewed ===== */}
+      <RecentlyViewed />
 
       {/* ===== Newsletter / Journal ===== */}
       <section className="border-b border-brushed-silver py-20 lg:py-28">

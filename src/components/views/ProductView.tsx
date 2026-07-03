@@ -8,6 +8,8 @@ import { ProductImage } from "@/components/site/ProductImage";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Stars } from "@/components/site/Stars";
 import { Reveal } from "@/components/site/Reveal";
+import { WishlistButton } from "@/components/site/WishlistButton";
+import { StickyBuyBar } from "@/components/site/StickyBuyBar";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -158,9 +160,16 @@ export function ProductView({ slug }: { slug: string }) {
                   {product.badge}
                 </span>
               )}
-              <h1 className="font-[var(--font-display)] text-[32px] font-medium leading-tight tracking-tight text-primary sm:text-[40px]">
-                {product.name}
-              </h1>
+              <div className="flex items-start justify-between gap-3">
+                <h1 className="font-[var(--font-display)] text-[32px] font-medium leading-tight tracking-tight text-primary sm:text-[40px]">
+                  {product.name}
+                </h1>
+                <WishlistButton
+                  slug={product.slug}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brushed-silver text-secondary hover:border-error hover:text-error"
+                  size={22}
+                />
+              </div>
               <p className="mt-2 font-[var(--font-body)] text-[17px] text-secondary">
                 {product.tagline}
               </p>
@@ -503,6 +512,9 @@ export function ProductView({ slug }: { slug: string }) {
           </div>
         </section>
       )}
+
+      {/* Sticky mobile buy bar */}
+      <StickyBuyBar product={product} />
     </div>
   );
 }

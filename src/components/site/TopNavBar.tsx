@@ -25,6 +25,10 @@ export function TopNavBar() {
   const navigate = useStore((s) => s.navigate);
   const cart = useStore((s) => s.cart);
   const loadCart = useStore((s) => s.loadCart);
+  const openCartDrawer = useStore((s) => s.openCartDrawer);
+  const openWishlistDrawer = useStore((s) => s.openWishlistDrawer);
+  const openFinder = useStore((s) => s.openFinder);
+  const wishlistCount = useStore((s) => s.wishlist.length);
   const view = useStore((s) => s.view);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,10 +92,22 @@ export function TopNavBar() {
               </button>
             );
           })}
+          <button
+            onClick={() => {
+              setMenuOpen(false);
+              openFinder();
+            }}
+            className="flex items-center gap-1.5 border border-primary px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-primary transition-colors hover:bg-primary hover:text-canvas-white"
+          >
+            <span className="material-symbols-outlined text-[16px]">
+              auto_awesome
+            </span>
+            Find Your Earbuds
+          </button>
         </div>
 
         {/* Icons */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4">
           <button
             onClick={() => {
               toast({
@@ -106,8 +122,25 @@ export function TopNavBar() {
             <span className="material-symbols-outlined text-primary">search</span>
           </button>
 
+          {/* Wishlist */}
           <button
-            onClick={() => go({ view: "cart" })}
+            onClick={openWishlistDrawer}
+            className="relative transition-opacity active:opacity-70"
+            aria-label={`Wishlist with ${wishlistCount} items`}
+          >
+            <span className="material-symbols-outlined text-primary">
+              favorite
+            </span>
+            {wishlistCount > 0 && (
+              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center bg-error px-1 text-[10px] font-semibold text-canvas-white rounded-full">
+                {wishlistCount}
+              </span>
+            )}
+          </button>
+
+          {/* Cart (opens drawer) */}
+          <button
+            onClick={openCartDrawer}
             className="relative transition-opacity active:opacity-70"
             aria-label={`Cart with ${itemCount} items`}
           >

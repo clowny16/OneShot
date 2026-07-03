@@ -1,7 +1,7 @@
 "use client";
 // AppShell — client root that wires the Zustand view store to the views.
-// Receives server-fetched products and inits the store, then renders the
-// active view inside a sticky-footer layout.
+// Mounts the sticky nav + active view + sticky footer, plus global overlays:
+// AI assistant, product finder, cart drawer, wishlist drawer, quick view.
 import { useEffect } from "react";
 import { useStore } from "@/lib/store";
 import type { ProductDTO } from "@/lib/types";
@@ -17,12 +17,19 @@ import { ContactView } from "@/components/views/ContactView";
 import { FAQView } from "@/components/views/FAQView";
 import { ShippingView } from "@/components/views/ShippingView";
 import { ReturnsView } from "@/components/views/ReturnsView";
+import { AssistantWidget } from "@/components/site/AssistantWidget";
+import { SmartProductFinder } from "@/components/site/SmartProductFinder";
+import { CartDrawer } from "@/components/site/CartDrawer";
+import { WishlistDrawer } from "@/components/site/WishlistDrawer";
+import { QuickView } from "@/components/site/QuickView";
 
 export function AppShell({ products }: { products: ProductDTO[] }) {
   const view = useStore((s) => s.view);
   const productSlug = useStore((s) => s.productSlug);
   const initProducts = useStore((s) => s.initProducts);
   const loadCart = useStore((s) => s.loadCart);
+  const initFromStorage = useStore((s) => s.initFromStorage);
+  const trackView = useStore((s) => s.trackView);
 
   useEffect(() => {
     initProducts(products);
@@ -30,7 +37,15 @@ export function AppShell({ products }: { products: ProductDTO[] }) {
 
   useEffect(() => {
     loadCart();
-  }, [loadCart]);
+    initFromStorage();
+  }, [loadCart, initFromStorage]);
+
+  // Track product views for the "Recently viewed" strip
+  useEffect(() => {
+    if (view === "product" && productSlug) {
+      trackView(productSlug);
+    }
+  }, [view, productSlug, trackView]);
 
   // Scroll to top whenever the view changes
   useEffect(() => {
@@ -42,6 +57,13 @@ export function AppShell({ products }: { products: ProductDTO[] }) {
       <TopNavBar />
       <main className="flex-1">{renderView(view, productSlug)}</main>
       <Footer />
+
+      {/* Global overlays */}
+      <CartDrawer />
+      <WishlistDrawer />
+      <QuickView />
+      <SmartProductFinder />
+      <AssistantWidget />
     </div>
   );
 }

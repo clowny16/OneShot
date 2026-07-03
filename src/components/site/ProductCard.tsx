@@ -1,12 +1,21 @@
 "use client";
 // ProductCard — editorial card. Used in grids on Home, Collection, and related.
+// Includes wishlist heart, quick-view button (hover), and social-proof line.
 import { type ProductDTO, formatINRFromRupees } from "@/lib/types";
 import { useStore } from "@/lib/store";
 import { ProductImage } from "./ProductImage";
 import { Stars } from "./Stars";
+import { WishlistButton } from "./WishlistButton";
 import { cn } from "@/lib/utils";
 
 type Variant = "default" | "tall" | "wide";
+
+// Deterministic "bought today" count per slug (stable across renders).
+function boughtToday(slug: string): number {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) | 0;
+  return 6 + (Math.abs(h) % 18); // 6–23
+}
 
 export function ProductCard({
   product,
@@ -18,6 +27,7 @@ export function ProductCard({
   priority?: boolean;
 }) {
   const navigate = useStore((s) => s.navigate);
+  const openQuickView = useStore((s) => s.openQuickView);
 
   const aspectClass =
     variant === "tall"
@@ -56,7 +66,6 @@ export function ProductCard({
           imageKey={product.imageKey}
           alt={product.title}
           className="h-full w-full border-0"
-          imgClassName={priority ? undefined : undefined}
         />
         {product.badge && (
           <div className="absolute left-0 top-0 bg-primary px-3 py-1 text-[10px] uppercase tracking-[0.1em] font-semibold text-canvas-white font-[var(--font-label)]">
@@ -68,10 +77,27 @@ export function ProductCard({
             -{discountPct}%
           </div>
         )}
-        <div className="absolute inset-x-0 bottom-0 translate-y-full bg-primary/0 p-4 transition-transform duration-300 group-hover:translate-y-0">
-          <div className="bg-canvas-white/95 backdrop-blur px-4 py-3 text-center text-[11px] uppercase tracking-[0.15em] font-semibold text-primary font-[var(--font-label)]">
-            View Product
-          </div>
+
+        {/* Wishlist heart */}
+        <div className="absolute right-2 top-2 z-10">
+          <WishlistButton
+            slug={product.slug}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas-white/85 text-primary backdrop-blur transition-colors hover:bg-canvas-white"
+            size={18}
+          />
+        </div>
+
+        {/* Hover actions: Quick view + View Product */}
+        <div className="absolute inset-x-0 bottom-0 flex translate-y-full flex-col gap-2 p-3 transition-transform duration-300 group-hover:translate-y-0">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              openQuickView(product.slug);
+            }}
+            className="bg-canvas-white/95 px-4 py-2.5 text-center text-[11px] uppercase tracking-[0.15em] font-semibold text-primary backdrop-blur transition-colors hover:bg-leather-tan hover:text-canvas-white font-[var(--font-label)]"
+          >
+            Quick view
+          </button>
         </div>
       </div>
 
@@ -89,6 +115,12 @@ export function ProductCard({
               ({product.reviewCount.toLocaleString("en-IN")})
             </span>
           </div>
+          <p className="mt-1.5 flex items-center gap-1 font-[var(--font-body)] text-[11px] text-leather-tan">
+            <span className="material-symbols-outlined text-[12px]">
+              local_fire_department
+            </span>
+            {boughtToday(product.slug)} bought today
+          </p>
         </div>
         <div className="text-right">
           <div className="font-[var(--font-display)] text-[18px] font-medium leading-none text-primary">
@@ -104,3 +136,4 @@ export function ProductCard({
     </article>
   );
 }
+
