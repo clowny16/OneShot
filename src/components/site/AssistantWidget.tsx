@@ -102,7 +102,7 @@ export function AssistantWidget() {
         onClick={() => setOpen()}
         aria-label="Open shopping assistant"
         className={cn(
-          "fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-canvas-white shadow-lg shadow-black/20 transition-all hover:bg-deep-charcoal hover:scale-105 lg:bottom-6 lg:right-6",
+          "fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-on-dark shadow-lg shadow-black/20 transition-all hover:bg-deep-charcoal hover:scale-105 lg:bottom-6 lg:right-6",
           open && "scale-0 pointer-events-none",
         )}
       >
@@ -120,8 +120,8 @@ export function AssistantWidget() {
           side="right"
           className="flex w-full flex-col gap-0 bg-canvas-white p-0 sm:max-w-[440px]"
         >
-          <SheetHeader className="border-b border-brushed-silver bg-primary px-5 py-4 text-left text-canvas-white">
-            <SheetTitle className="flex items-center gap-3 text-canvas-white">
+          <SheetHeader className="border-b border-brushed-silver bg-primary px-5 py-4 text-left text-on-dark">
+            <SheetTitle className="flex items-center gap-3 text-on-dark">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-canvas-white/10">
                 <span className="material-symbols-outlined text-[20px]">
                   forum
@@ -131,7 +131,7 @@ export function AssistantWidget() {
                 <div className="font-[var(--font-display)] text-[16px] font-semibold uppercase tracking-tight">
                   OneShot Assistant
                 </div>
-                <div className="flex items-center gap-1.5 font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-canvas-white/70">
+                <div className="flex items-center gap-1.5 font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-on-dark/70">
                   <span className="h-1.5 w-1.5 rounded-full bg-success" />
                   Online · typically replies instantly
                 </div>
@@ -156,7 +156,7 @@ export function AssistantWidget() {
                   className={cn(
                     "max-w-[85%] rounded-2xl px-4 py-2.5 font-[var(--font-body)] text-[14px] leading-relaxed",
                     m.role === "user"
-                      ? "rounded-br-sm bg-primary text-canvas-white"
+                      ? "rounded-br-sm bg-primary text-on-dark"
                       : "rounded-bl-sm bg-canvas-white text-primary border border-brushed-silver",
                   )}
                 >
@@ -255,7 +255,7 @@ export function AssistantWidget() {
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="flex h-10 w-10 shrink-0 items-center justify-center bg-primary text-canvas-white transition-colors hover:bg-deep-charcoal disabled:opacity-40"
+              className="flex h-10 w-10 shrink-0 items-center justify-center bg-primary text-on-dark transition-colors hover:bg-deep-charcoal disabled:opacity-40"
               aria-label="Send"
             >
               <span className="material-symbols-outlined text-[20px]">

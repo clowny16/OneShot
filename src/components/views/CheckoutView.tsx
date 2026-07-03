@@ -71,7 +71,7 @@ export function CheckoutView() {
         </h1>
         <button
           onClick={() => navigate({ view: "collection" })}
-          className="mt-6 bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+          className="mt-6 bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
         >
           Shop the collection
         </button>
@@ -230,7 +230,7 @@ export function CheckoutView() {
 
                 <button
                   onClick={onContinueToPayment}
-                  className="w-full bg-primary px-6 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-deep-charcoal sm:w-auto sm:px-10"
+                  className="w-full bg-primary px-6 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark transition-all hover:bg-deep-charcoal sm:w-auto sm:px-10"
                 >
                   Continue to Payment
                 </button>
@@ -287,7 +287,7 @@ export function CheckoutView() {
                   <button
                     onClick={onPlaceOrder}
                     disabled={placing}
-                    className="flex-1 bg-primary px-6 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-deep-charcoal disabled:opacity-50"
+                    className="flex-1 bg-primary px-6 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark transition-all hover:bg-deep-charcoal disabled:opacity-50"
                   >
                     {placing
                       ? "Placing order..."
@@ -314,7 +314,7 @@ export function CheckoutView() {
                         alt={item.name}
                         className="h-full w-full border-0"
                       />
-                      <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center bg-primary px-1 text-[10px] font-semibold text-canvas-white">
+                      <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center bg-primary px-1 text-[10px] font-semibold text-on-dark">
                         {item.quantity}
                       </span>
                     </div>
@@ -428,7 +428,7 @@ function StepDot({
       className={cn(
         "flex h-8 w-8 items-center justify-center rounded-full border font-[var(--font-label)] text-[12px] font-semibold transition-colors",
         done
-          ? "border-primary bg-primary text-canvas-white"
+          ? "border-primary bg-primary text-on-dark"
           : active
             ? "border-primary text-primary"
             : "border-brushed-silver text-outline",
@@ -585,7 +585,7 @@ function Confirmation({
           </button>
           <button
             onClick={onShop}
-            className="bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+            className="bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
           >
             Continue Shopping
           </button>

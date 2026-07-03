@@ -59,7 +59,7 @@ export function WishlistDrawer() {
                 close();
                 navigate({ view: "collection" });
               }}
-              className="mt-6 bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+              className="mt-6 bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
             >
               Browse earbuds
             </button>

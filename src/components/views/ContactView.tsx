@@ -141,7 +141,7 @@ export function ContactView() {
               <button
                 type="submit"
                 disabled={sending}
-                className="bg-primary px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal disabled:opacity-50"
+                className="bg-primary px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal disabled:opacity-50"
               >
                 {sending ? "Sending..." : "Send Message"}
               </button>

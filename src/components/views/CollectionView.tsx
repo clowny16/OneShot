@@ -134,13 +134,13 @@ export function CollectionView() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         <div className="relative z-10 mx-auto w-full max-w-[1440px] px-5 pb-12 lg:px-16 lg:pb-16">
-          <span className="mb-3 block font-[var(--font-label)] text-[11px] uppercase tracking-[0.15em] font-semibold text-canvas-white/80">
+          <span className="mb-3 block font-[var(--font-label)] text-[11px] uppercase tracking-[0.15em] font-semibold text-on-dark/80">
             The Collection
           </span>
-          <h1 className="font-[var(--font-display)] text-[36px] font-medium leading-[1.05] tracking-tight text-canvas-white sm:text-[52px]">
+          <h1 className="font-[var(--font-display)] text-[36px] font-medium leading-[1.05] tracking-tight text-on-dark sm:text-[52px]">
             All Audio
           </h1>
-          <p className="mt-3 max-w-xl font-[var(--font-body)] text-[16px] text-canvas-white/80">
+          <p className="mt-3 max-w-xl font-[var(--font-body)] text-[16px] text-on-dark/80">
             {products.length} products across earbuds, headphones, speakers,
             gaming, and accessories. Free shipping across India on orders over
             ₹999.
@@ -165,7 +165,7 @@ export function CollectionView() {
                 className={cn(
                   "shrink-0 px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold transition-colors",
                   activeType === type
-                    ? "bg-primary text-canvas-white"
+                    ? "bg-primary text-on-dark"
                     : "text-secondary hover:text-primary",
                 )}
               >

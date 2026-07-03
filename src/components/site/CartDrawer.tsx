@@ -65,7 +65,7 @@ export function CartDrawer() {
                 close();
                 navigate({ view: "collection" });
               }}
-              className="mt-6 bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+              className="mt-6 bg-primary px-8 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
             >
               Shop the collection
             </button>
@@ -204,7 +204,7 @@ export function CartDrawer() {
                     close();
                     navigate({ view: "checkout" });
                   }}
-                  className="w-full bg-primary px-6 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+                  className="w-full bg-primary px-6 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
                 >
                   Checkout
                 </button>

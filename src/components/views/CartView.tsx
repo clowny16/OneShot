@@ -243,7 +243,7 @@ export function CartView() {
                   />
                   <button
                     onClick={onApplyPromo}
-                    className="bg-primary px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+                    className="bg-primary px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-on-dark hover:bg-deep-charcoal"
                   >
                     Apply
                   </button>
@@ -287,7 +287,7 @@ export function CartView() {
               <button
                 onClick={() => navigate({ view: "checkout" })}
                 disabled={loading}
-                className="mt-6 w-full bg-primary px-6 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-deep-charcoal disabled:opacity-50"
+                className="mt-6 w-full bg-primary px-6 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark transition-all hover:bg-deep-charcoal disabled:opacity-50"
               >
                 Proceed to Checkout
               </button>
@@ -362,7 +362,7 @@ function EmptyCart({ onShop }: { onShop: () => void }) {
       </p>
       <button
         onClick={onShop}
-        className="mt-8 bg-primary px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+        className="mt-8 bg-primary px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
       >
         Shop the collection
       </button>

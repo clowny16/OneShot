@@ -77,16 +77,16 @@ export function HomeView() {
                 </span>
               </span>
               <div>
-                <p className="font-[var(--font-display)] text-[16px] font-medium text-canvas-white sm:text-[19px]">
+                <p className="font-[var(--font-display)] text-[16px] font-medium text-on-dark sm:text-[19px]">
                   Not sure which audio fits you?
                 </p>
-                <p className="font-[var(--font-body)] text-[13px] text-canvas-white/60">
+                <p className="font-[var(--font-body)] text-[13px] text-on-dark/60">
                   Take the 30-second quiz — AI matches you to the right pair.
                 </p>
               </div>
             </div>
 
-            <span className="relative flex shrink-0 items-center gap-2 rounded-full bg-canvas-white px-5 py-2.5 font-[var(--font-label)] text-[11px] uppercase tracking-[0.12em] font-semibold text-primary transition-all group-hover:bg-leather-tan group-hover:text-canvas-white">
+            <span className="relative flex shrink-0 items-center gap-2 rounded-full bg-canvas-white px-5 py-2.5 font-[var(--font-label)] text-[11px] uppercase tracking-[0.12em] font-semibold text-primary transition-all group-hover:bg-leather-tan group-hover:text-on-dark">
               Find Your Audio
               <span className="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-0.5">
                 arrow_forward
@@ -160,7 +160,7 @@ export function HomeView() {
       </section>
 
       {/* ===== Built for Everyday (Dark Philosophy) ===== */}
-      <section className="bg-deep-charcoal py-20 text-canvas-white lg:py-28">
+      <section className="bg-deep-charcoal py-20 text-on-dark lg:py-28">
         <div className="mx-auto w-full max-w-[1440px] px-5 lg:px-16">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
@@ -172,7 +172,7 @@ export function HomeView() {
                 <br />
                 Everyday.
               </h2>
-              <div className="max-w-md space-y-5 font-[var(--font-body)] text-[17px] leading-relaxed text-canvas-white/75">
+              <div className="max-w-md space-y-5 font-[var(--font-body)] text-[17px] leading-relaxed text-on-dark/75">
                 <p>
                   We make earbuds that fit real life. Lightweight shells, stable
                   Bluetooth, and tuned drivers — for the commute, the gym, the
@@ -272,7 +272,7 @@ export function HomeView() {
                 }
                 className="group flex flex-col items-start gap-3 border border-brushed-silver bg-canvas-white p-5 text-left transition-all hover:border-primary hover:shadow-sm"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-container-low text-primary transition-colors group-hover:bg-primary group-hover:text-canvas-white">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-container-low text-primary transition-colors group-hover:bg-primary group-hover:text-on-dark">
                   <span className="material-symbols-outlined text-[22px]">
                     {cat.icon}
                   </span>
@@ -342,10 +342,10 @@ export function HomeView() {
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <p className="mb-1 font-[var(--font-display)] text-[32px] font-medium leading-none text-canvas-white">
+      <p className="mb-1 font-[var(--font-display)] text-[32px] font-medium leading-none text-on-dark">
         {value}
       </p>
-      <p className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-canvas-white/60">
+      <p className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-on-dark/60">
         {label}
       </p>
     </div>
@@ -373,11 +373,11 @@ function BentoCard({
         className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-      <div className="relative z-10 text-canvas-white">
+      <div className="relative z-10 text-on-dark">
         <h4 className="mb-2 font-[var(--font-display)] text-[24px] font-medium leading-tight">
           {title}
         </h4>
-        <p className="mb-6 line-clamp-2 font-[var(--font-body)] text-[15px] leading-relaxed text-canvas-white/80">
+        <p className="mb-6 line-clamp-2 font-[var(--font-body)] text-[15px] leading-relaxed text-on-dark/80">
           {body}
         </p>
         <button

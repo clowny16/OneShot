@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "young person wearing white wireless earbuds smiling outdoors city street lifestyle photograph"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "young person wearing white wireless earbuds smiling outdoors city street lifestyle photograph",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/a0fafa519976.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "956px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/012776b101ac.jpeg",
+      "caption": "",
+      "source": "Pexels",
+      "original_width": "2333px",
+      "original_height": "3500px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/f627c7c5dadf.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "957px"
+    }
+  ]
+}

@@ -14,7 +14,11 @@ type NavTarget =
   | { view: "contact" }
   | { view: "faq" }
   | { view: "shipping" }
-  | { view: "returns" };
+  | { view: "returns" }
+  | { view: "community" }
+  | { view: "login" }
+  | { view: "signup" }
+  | { view: "account" };
 
 type State = {
   view: ViewName;

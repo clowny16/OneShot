@@ -13,6 +13,7 @@
 @theme inline {
   /* Brand palette */
   --color-canvas-white: #ffffff;
+  --color-on-dark: #ffffff;       /* always-white text for dark accent sections */
   --color-surface: #f9f9f9;
   --color-surface-bright: #ffffff;
   --color-surface-container-lowest: #ffffff;
@@ -110,6 +111,59 @@
   --text-price-display--font-weight: 500;
 }
 
+/* ===========================================================================
+   Dark Mode — brand-aware dark palette.
+   Swaps functional colors (page bg, text, borders, surfaces) to dark variants
+   while keeping accent colors (leather-tan, deep-charcoal sections) intact.
+   ========================================================================== */
+.dark {
+  --color-canvas-white: #1a1a1a;      /* page bg + cards (slightly lifted) */
+  --color-on-dark: #ffffff;           /* stays white for text on dark sections */
+  --color-surface: #121212;           /* deepest background */
+  --color-surface-bright: #222222;
+  --color-surface-container-lowest: #161616;
+  --color-surface-container-low: #1e1e1e;
+  --color-surface-container: #262626;
+  --color-surface-container-high: #2e2e2e;
+  --color-surface-container-highest: #363636;
+  --color-surface-dim: #0e0e0e;
+
+  --color-primary: #ffffff;           /* main text inverts to white */
+  --color-on-primary: #121212;
+  --color-deep-charcoal: #0a0a0a;     /* keep dark for accent sections */
+  --color-gunmetal: #2e2e30;
+  --color-brushed-silver: #3a3a3a;    /* darker borders */
+  --color-leather-tan: #d9b48a;       /* slightly lighter for contrast */
+
+  --color-secondary: #a8a8a8;         /* secondary text lighter */
+  --color-on-secondary: #121212;
+  --color-on-secondary-container: #b8b8b8;
+  --color-outline: #6a6a6a;
+  --color-outline-variant: #3a3a3a;
+  --color-on-surface: #f0f0f0;
+  --color-on-surface-variant: #b8b8b8;
+  --color-inverse-surface: #f0f0f0;
+
+  --color-error: #f87171;
+  --color-success: #4ade80;
+
+  /* shadcn-compatible aliases */
+  --color-background: var(--color-surface);
+  --color-foreground: var(--color-on-surface);
+  --color-card: var(--color-canvas-white);
+  --color-card-foreground: var(--color-on-surface);
+  --color-popover: var(--color-canvas-white);
+  --color-popover-foreground: var(--color-on-surface);
+  --color-muted: var(--color-surface-container);
+  --color-muted-foreground: var(--color-secondary);
+  --color-accent: var(--color-surface-container-low);
+  --color-accent-foreground: var(--color-on-surface);
+  --color-destructive: var(--color-error);
+  --color-border: var(--color-brushed-silver);
+  --color-input: var(--color-surface-container-high);
+  --color-ring: var(--color-leather-tan);
+}
+
 @layer base {
   * {
     border-color: var(--color-brushed-silver);
@@ -119,7 +173,7 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: var(--color-canvas-white);
+    background-color: var(--color-surface);
     color: var(--color-primary);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;

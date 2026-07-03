@@ -98,7 +98,7 @@ export function HeroSlider() {
           ].map((item) => (
             <div
               key={item.label}
-              className="flex items-center gap-2 text-canvas-white/90"
+              className="flex items-center gap-2 text-on-dark/90"
             >
               <span className="material-symbols-outlined text-[18px]">
                 {item.icon}
@@ -115,7 +115,7 @@ export function HeroSlider() {
       <button
         onClick={scrollPrev}
         aria-label="Previous slide"
-        className="group absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-canvas-white/30 bg-black/20 text-canvas-white backdrop-blur-sm transition-all hover:bg-canvas-white hover:text-primary lg:left-6"
+        className="group absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-canvas-white/30 bg-black/20 text-on-dark backdrop-blur-sm transition-all hover:bg-canvas-white hover:text-primary lg:left-6"
       >
         <span className="material-symbols-outlined text-[24px]">
           arrow_back
@@ -124,7 +124,7 @@ export function HeroSlider() {
       <button
         onClick={scrollNext}
         aria-label="Next slide"
-        className="group absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-canvas-white/30 bg-black/20 text-canvas-white backdrop-blur-sm transition-all hover:bg-canvas-white hover:text-primary lg:right-6"
+        className="group absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-canvas-white/30 bg-black/20 text-on-dark backdrop-blur-sm transition-all hover:bg-canvas-white hover:text-primary lg:right-6"
       >
         <span className="material-symbols-outlined text-[24px]">
           arrow_forward
@@ -134,7 +134,7 @@ export function HeroSlider() {
       {/* Controls: dots + counter + progress */}
       <div className="absolute bottom-24 right-5 z-20 flex flex-col items-end gap-3 lg:bottom-28 lg:right-16">
         <div className="flex items-center gap-3">
-          <span className="font-[var(--font-display)] text-[14px] font-medium tabular-nums text-canvas-white">
+          <span className="font-[var(--font-display)] text-[14px] font-medium tabular-nums text-on-dark">
             {String(selected + 1).padStart(2, "0")}
           </span>
           <div className="flex gap-2">
@@ -152,7 +152,7 @@ export function HeroSlider() {
               />
             ))}
           </div>
-          <span className="font-[var(--font-display)] text-[14px] font-medium tabular-nums text-canvas-white/50">
+          <span className="font-[var(--font-display)] text-[14px] font-medium tabular-nums text-on-dark/50">
             {String(HERO_SLIDES.length).padStart(2, "0")}
           </span>
         </div>
@@ -224,7 +224,7 @@ function SlideView({
           <div className="max-w-2xl">
             <span
               className={cn(
-                "mb-4 block font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white/90 transition-all duration-700",
+                "mb-4 block font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark/90 transition-all duration-700",
                 active ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
               )}
             >
@@ -232,7 +232,7 @@ function SlideView({
             </span>
             <h1
               className={cn(
-                "mb-6 whitespace-pre-line font-[var(--font-display)] text-[40px] font-medium leading-[1.05] tracking-tight text-canvas-white transition-all duration-700 delay-75 sm:text-[56px] lg:text-[72px]",
+                "mb-6 whitespace-pre-line font-[var(--font-display)] text-[40px] font-medium leading-[1.05] tracking-tight text-on-dark transition-all duration-700 delay-75 sm:text-[56px] lg:text-[72px]",
                 active ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
               )}
             >
@@ -240,7 +240,7 @@ function SlideView({
             </h1>
             <p
               className={cn(
-                "mb-10 max-w-lg font-[var(--font-body)] text-[17px] leading-relaxed text-canvas-white/85 transition-all duration-700 delay-150 lg:text-[19px]",
+                "mb-10 max-w-lg font-[var(--font-body)] text-[17px] leading-relaxed text-on-dark/85 transition-all duration-700 delay-150 lg:text-[19px]",
                 active ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
               )}
             >
@@ -254,13 +254,13 @@ function SlideView({
             >
               <button
                 onClick={onPrimary}
-                className="bg-canvas-white px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-primary transition-all hover:bg-leather-tan hover:text-canvas-white"
+                className="bg-canvas-white px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-primary transition-all hover:bg-leather-tan hover:text-on-dark"
               >
                 {slide.primaryCta.label}
               </button>
               <button
                 onClick={onSecondary}
-                className="border border-canvas-white/60 px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-canvas-white hover:text-primary"
+                className="border border-canvas-white/60 px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark transition-all hover:bg-canvas-white hover:text-primary"
               >
                 {slide.secondaryCta.label}
               </button>

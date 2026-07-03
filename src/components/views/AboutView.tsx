@@ -88,7 +88,7 @@ export function AboutView() {
       </section>
 
       {/* Values */}
-      <section className="bg-deep-charcoal py-16 text-canvas-white lg:py-24">
+      <section className="bg-deep-charcoal py-16 text-on-dark lg:py-24">
         <div className="mx-auto w-full max-w-[1440px] px-5 lg:px-16">
           <Reveal className="mb-12">
             <span className="mb-3 block font-[var(--font-label)] text-[11px] uppercase tracking-[0.15em] font-semibold text-leather-tan">
@@ -123,7 +123,7 @@ export function AboutView() {
                 <h3 className="mt-4 font-[var(--font-display)] text-[22px] font-medium">
                   {v.title}
                 </h3>
-                <p className="mt-3 font-[var(--font-body)] text-[15px] leading-relaxed text-canvas-white/70">
+                <p className="mt-3 font-[var(--font-body)] text-[15px] leading-relaxed text-on-dark/70">
                   {v.body}
                 </p>
               </Reveal>
@@ -198,7 +198,7 @@ export function AboutView() {
             </p>
             <button
               onClick={() => navigate({ view: "collection" })}
-              className="mt-6 bg-primary px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+              className="mt-6 bg-primary px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
             >
               Shop the Collection
             </button>

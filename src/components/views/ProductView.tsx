@@ -156,7 +156,7 @@ export function ProductView({ slug }: { slug: string }) {
           <Reveal delay={120}>
             <div>
               {product.badge && (
-                <span className="mb-3 inline-block bg-primary px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-canvas-white">
+                <span className="mb-3 inline-block bg-primary px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-on-dark">
                   {product.badge}
                 </span>
               )}
@@ -190,7 +190,7 @@ export function ProductView({ slug }: { slug: string }) {
                     <span className="mb-1 font-[var(--font-body)] text-[18px] text-outline line-through">
                       {formatINRFromRupees(product.compareAt)}
                     </span>
-                    <span className="mb-1 bg-leather-tan px-2 py-0.5 font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-canvas-white">
+                    <span className="mb-1 bg-leather-tan px-2 py-0.5 font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-on-dark">
                       Save {discountPct}%
                     </span>
                   </>
@@ -261,7 +261,7 @@ export function ProductView({ slug }: { slug: string }) {
                 <button
                   onClick={onAddToCart}
                   disabled={adding || !product.inStock}
-                  className="flex-1 bg-primary px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-deep-charcoal disabled:opacity-50"
+                  className="flex-1 bg-primary px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark transition-all hover:bg-deep-charcoal disabled:opacity-50"
                 >
                   {adding ? "Adding..." : "Add to Cart"}
                 </button>
@@ -269,7 +269,7 @@ export function ProductView({ slug }: { slug: string }) {
               <button
                 onClick={buyNow}
                 disabled={adding || !product.inStock}
-                className="mt-3 w-full border border-primary px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-primary transition-all hover:bg-primary hover:text-canvas-white disabled:opacity-50"
+                className="mt-3 w-full border border-primary px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-primary transition-all hover:bg-primary hover:text-on-dark disabled:opacity-50"
               >
                 Buy It Now
               </button>
@@ -465,7 +465,7 @@ export function ProductView({ slug }: { slug: string }) {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="flex h-8 w-8 items-center justify-center bg-primary font-[var(--font-display)] text-[12px] font-semibold text-canvas-white">
+                          <div className="flex h-8 w-8 items-center justify-center bg-primary font-[var(--font-display)] text-[12px] font-semibold text-on-dark">
                             {r.name[0]}
                           </div>
                           <div>

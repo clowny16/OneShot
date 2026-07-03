@@ -68,12 +68,12 @@ export function ProductCard({
           className="h-full w-full border-0"
         />
         {product.badge && (
-          <div className="absolute left-0 top-0 bg-primary px-3 py-1 text-[10px] uppercase tracking-[0.1em] font-semibold text-canvas-white font-[var(--font-label)]">
+          <div className="absolute left-0 top-0 bg-primary px-3 py-1 text-[10px] uppercase tracking-[0.1em] font-semibold text-on-dark font-[var(--font-label)]">
             {product.badge}
           </div>
         )}
         {discountPct > 0 && !product.badge && (
-          <div className="absolute left-0 top-0 bg-leather-tan px-3 py-1 text-[10px] uppercase tracking-[0.1em] font-semibold text-canvas-white font-[var(--font-label)]">
+          <div className="absolute left-0 top-0 bg-leather-tan px-3 py-1 text-[10px] uppercase tracking-[0.1em] font-semibold text-on-dark font-[var(--font-label)]">
             -{discountPct}%
           </div>
         )}
@@ -94,7 +94,7 @@ export function ProductCard({
               e.stopPropagation();
               openQuickView(product.slug);
             }}
-            className="bg-canvas-white/95 px-4 py-2.5 text-center text-[11px] uppercase tracking-[0.15em] font-semibold text-primary backdrop-blur transition-colors hover:bg-leather-tan hover:text-canvas-white font-[var(--font-label)]"
+            className="bg-canvas-white/95 px-4 py-2.5 text-center text-[11px] uppercase tracking-[0.15em] font-semibold text-primary backdrop-blur transition-colors hover:bg-leather-tan hover:text-on-dark font-[var(--font-label)]"
           >
             Quick view
           </button>

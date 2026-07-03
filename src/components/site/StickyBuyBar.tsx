@@ -51,7 +51,7 @@ export function StickyBuyBar({ product }: { product: ProductDTO }) {
         <button
           onClick={onAdd}
           disabled={adding}
-          className="bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal disabled:opacity-50"
+          className="bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal disabled:opacity-50"
         >
           {adding ? "Adding…" : "Add to Cart"}
         </button>

@@ -71,12 +71,12 @@ export function QuickView() {
                 imgClassName="transition-transform duration-500 hover:scale-105"
               />
               {product.badge && (
-                <div className="absolute left-0 top-0 bg-primary px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-canvas-white">
+                <div className="absolute left-0 top-0 bg-primary px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-on-dark">
                   {product.badge}
                 </div>
               )}
               {product.compareAt && product.compareAt > product.price && (
-                <div className="absolute right-0 top-0 bg-leather-tan px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-canvas-white">
+                <div className="absolute right-0 top-0 bg-leather-tan px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-on-dark">
                   -{Math.round(((product.compareAt - product.price) / product.compareAt) * 100)}%
                 </div>
               )}
@@ -155,7 +155,7 @@ export function QuickView() {
                 <button
                   onClick={onAdd}
                   disabled={adding}
-                  className="flex flex-1 items-center justify-center gap-2 bg-primary px-6 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-deep-charcoal disabled:opacity-50"
+                  className="flex flex-1 items-center justify-center gap-2 bg-primary px-6 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark transition-all hover:bg-deep-charcoal disabled:opacity-50"
                 >
                   <span className="material-symbols-outlined text-[18px]">
                     {adding ? "progress_activity" : "shopping_bag"}

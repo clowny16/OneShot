@@ -29,7 +29,7 @@ export function Footer() {
       title: "Company",
       links: [
         { label: "About Us", view: { view: "about" } },
-        { label: "Our Story", view: { view: "about" } },
+        { label: "Community", view: { view: "community" } },
         { label: "Warranty", view: { view: "returns" } },
         { label: "Care Guide", view: { view: "faq" } },
       ],

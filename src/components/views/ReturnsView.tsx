@@ -129,7 +129,7 @@ export function ReturnsView() {
       </section>
 
       {/* Warranty */}
-      <section className="border-y border-brushed-silver bg-deep-charcoal py-16 text-canvas-white lg:py-20">
+      <section className="border-y border-brushed-silver bg-deep-charcoal py-16 text-on-dark lg:py-20">
         <div className="mx-auto w-full max-w-[1440px] px-5 lg:px-16">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
@@ -139,14 +139,14 @@ export function ReturnsView() {
               <h2 className="font-[var(--font-display)] text-[32px] font-medium leading-tight tracking-tight sm:text-[44px]">
                 1-year warranty on every unit.
               </h2>
-              <p className="mt-5 max-w-md font-[var(--font-body)] text-[16px] leading-relaxed text-canvas-white/70">
+              <p className="mt-5 max-w-md font-[var(--font-body)] text-[16px] leading-relaxed text-on-dark/70">
                 Every OneShot product is covered against manufacturing defects
                 for one year from the date of delivery. If something fails on
                 its own, we fix it or replace it.
               </p>
               <button
                 onClick={() => navigate({ view: "contact" })}
-                className="mt-6 bg-canvas-white px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-primary hover:bg-leather-tan hover:text-canvas-white"
+                className="mt-6 bg-canvas-white px-8 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-primary hover:bg-leather-tan hover:text-on-dark"
               >
                 Claim warranty
               </button>
@@ -156,7 +156,7 @@ export function ReturnsView() {
                 <h3 className="font-[var(--font-display)] text-[18px] font-medium">
                   Covered
                 </h3>
-                <ul className="mt-3 space-y-2 font-[var(--font-body)] text-[14px] text-canvas-white/70">
+                <ul className="mt-3 space-y-2 font-[var(--font-body)] text-[14px] text-on-dark/70">
                   {[
                     "Driver or audio failure",
                     "Charging port defects",
@@ -177,7 +177,7 @@ export function ReturnsView() {
                 <h3 className="font-[var(--font-display)] text-[18px] font-medium">
                   Not covered
                 </h3>
-                <ul className="mt-3 space-y-2 font-[var(--font-body)] text-[14px] text-canvas-white/70">
+                <ul className="mt-3 space-y-2 font-[var(--font-body)] text-[14px] text-on-dark/70">
                   {[
                     "Physical damage, drops, or cracks",
                     "Water damage beyond rated IPX level",
@@ -255,7 +255,7 @@ export function ReturnsView() {
             </p>
             <button
               onClick={() => navigate({ view: "contact" })}
-              className="mt-4 bg-primary px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+              className="mt-4 bg-primary px-10 py-4 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
             >
               Contact Support
             </button>

@@ -1,0 +1,32 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "woman wearing over-ear headphones working from home cafe lifestyle photograph"
+✅ Got 3 images
+{
+  "success": true,
+  "query": "woman wearing over-ear headphones working from home cafe lifestyle photograph",
+  "count": 3,
+  "ranked": false,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/1549afbf37e2.png",
+      "caption": "",
+      "source": "JBL (Newsroom)",
+      "original_width": "1280px",
+      "original_height": "791px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/573d5e54a86b.jpg",
+      "caption": "",
+      "source": "Pexels",
+      "original_width": "1125px",
+      "original_height": "750px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/8f79fb49e486.jpg",
+      "caption": "",
+      "source": "Spotlight Delaware",
+      "original_width": "1200px",
+      "original_height": "900px"
+    }
+  ]
+}

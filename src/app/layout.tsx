@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { DM_Sans, Libre_Franklin, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/site/ThemeProvider";
+import { SessionProvider } from "@/components/site/SessionProvider";
 
 const dmSans = DM_Sans({
   variable: "--font-display",
@@ -66,10 +68,19 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${dmSans.variable} ${libreFranklin.variable} ${ibmPlexSans.variable} antialiased bg-canvas-white text-primary font-body`}
+        className={`${dmSans.variable} ${libreFranklin.variable} ${ibmPlexSans.variable} antialiased bg-surface text-primary font-body`}
       >
-        {children}
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <SessionProvider>
+            {children}
+            <Toaster />
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

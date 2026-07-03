@@ -3,6 +3,7 @@
 // Desktop: brand mark left, nav center, icons right (search, cart with count, mobile menu).
 // Mobile: sheet menu.
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import {
@@ -12,10 +13,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/site/ThemeToggle";
 import { toast } from "@/hooks/use-toast";
 
 const NAV_LINKS: { label: string; view: Parameters<ReturnType<typeof useStore.getState>["navigate"]>[0] }[] = [
   { label: "COLLECTIONS", view: { view: "collection" } },
+  { label: "COMMUNITY", view: { view: "community" } },
   { label: "ABOUT", view: { view: "about" } },
   { label: "SUPPORT", view: { view: "faq" } },
   { label: "CONTACT", view: { view: "contact" } },
@@ -30,9 +33,12 @@ export function TopNavBar() {
   const openFinder = useStore((s) => s.openFinder);
   const wishlistCount = useStore((s) => s.wishlist.length);
   const view = useStore((s) => s.view);
+  const { data: session, status } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isAuthed = mounted && status === "authenticated";
 
   useEffect(() => {
     loadCart();
@@ -80,6 +86,7 @@ export function TopNavBar() {
           {NAV_LINKS.map((link) => {
             const active =
               (link.label === "COLLECTIONS" && view === "collection") ||
+              (link.label === "COMMUNITY" && view === "community") ||
               (link.label === "ABOUT" && view === "about") ||
               (link.label === "SUPPORT" && (view === "faq" || view === "shipping" || view === "returns")) ||
               (link.label === "CONTACT" && view === "contact");
@@ -103,9 +110,9 @@ export function TopNavBar() {
               setMenuOpen(false);
               openFinder();
             }}
-            className="group flex items-center gap-1.5 rounded-full bg-deep-charcoal px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-canvas-white transition-all hover:bg-leather-tan"
+            className="group flex items-center gap-1.5 rounded-full bg-deep-charcoal px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-on-dark transition-all hover:bg-leather-tan"
           >
-            <span className="material-symbols-outlined filled text-[16px] text-leather-tan transition-colors group-hover:text-canvas-white">
+            <span className="material-symbols-outlined filled text-[16px] text-leather-tan transition-colors group-hover:text-on-dark">
               auto_awesome
             </span>
             Find Your Earbuds
@@ -114,6 +121,7 @@ export function TopNavBar() {
 
         {/* Icons */}
         <div className="flex items-center gap-4">
+          <ThemeToggle className="hidden sm:flex" />
           <button
             onClick={() => {
               toast({
@@ -128,6 +136,22 @@ export function TopNavBar() {
             <span className="material-symbols-outlined text-primary">search</span>
           </button>
 
+          {/* Account */}
+          <button
+            onClick={() => navigate({ view: isAuthed ? "account" : "login" })}
+            className="relative transition-opacity active:opacity-70"
+            aria-label={isAuthed ? "My account" : "Sign in"}
+          >
+            <span
+              className={cn(
+                "material-symbols-outlined text-primary",
+                isAuthed && "filled",
+              )}
+            >
+              {isAuthed ? "person" : "person"}
+            </span>
+          </button>
+
           {/* Wishlist */}
           <button
             onClick={openWishlistDrawer}
@@ -138,7 +162,7 @@ export function TopNavBar() {
               favorite
             </span>
             {wishlistCount > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center bg-error px-1 text-[10px] font-semibold text-canvas-white rounded-full">
+              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center bg-error px-1 text-[10px] font-semibold text-on-dark rounded-full">
                 {wishlistCount}
               </span>
             )}
@@ -154,7 +178,7 @@ export function TopNavBar() {
               shopping_bag
             </span>
             {itemCount > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center bg-leather-tan px-1 text-[10px] font-semibold text-canvas-white rounded-full">
+              <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center bg-leather-tan px-1 text-[10px] font-semibold text-on-dark rounded-full">
                 {itemCount}
               </span>
             )}
@@ -184,6 +208,7 @@ export function TopNavBar() {
                   {[
                     { label: "Home", v: { view: "home" } as const },
                     { label: "Collections", v: { view: "collection" } as const },
+                    { label: "Community", v: { view: "community" } as const },
                     { label: "About Us", v: { view: "about" } as const },
                     { label: "FAQ", v: { view: "faq" } as const },
                     { label: "Shipping & Delivery", v: { view: "shipping" } as const },
@@ -199,10 +224,22 @@ export function TopNavBar() {
                     </button>
                   ))}
                 </div>
-                <div className="mt-8">
+                <div className="mt-8 space-y-3">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => go({ view: isAuthed ? "account" : "login" })}
+                      className="flex flex-1 items-center justify-center gap-2 border border-primary py-3 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-primary"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">
+                        person
+                      </span>
+                      {isAuthed ? "My Account" : "Sign In"}
+                    </button>
+                    <ThemeToggle />
+                  </div>
                   <button
                     onClick={() => go({ view: "cart" })}
-                    className="w-full bg-primary py-4 text-center font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white"
+                    className="w-full bg-primary py-4 text-center font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark"
                   >
                     View Cart ({itemCount})
                   </button>

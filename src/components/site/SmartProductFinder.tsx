@@ -148,8 +148,8 @@ export function SmartProductFinder() {
         className="max-w-2xl overflow-hidden bg-canvas-white p-0 sm:rounded-none"
         aria-describedby={undefined}
       >
-        <DialogHeader className="border-b border-brushed-silver bg-primary px-6 py-5 text-canvas-white">
-          <DialogTitle className="flex items-center gap-3 text-canvas-white">
+        <DialogHeader className="border-b border-brushed-silver bg-primary px-6 py-5 text-on-dark">
+          <DialogTitle className="flex items-center gap-3 text-on-dark">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-canvas-white/10">
               <span className="material-symbols-outlined text-[22px]">
                 auto_awesome
@@ -159,7 +159,7 @@ export function SmartProductFinder() {
               <div className="font-[var(--font-display)] text-[18px] font-semibold uppercase tracking-tight">
                 Find Your Earbuds
               </div>
-              <div className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-canvas-white/70">
+              <div className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-on-dark/70">
                 AI-powered · 4 quick questions
               </div>
             </div>
@@ -239,7 +239,7 @@ export function SmartProductFinder() {
             <div className="flex flex-col items-center justify-center px-6 py-20">
               <div className="relative h-16 w-16">
                 <div className="absolute inset-0 animate-ping rounded-full bg-leather-tan/30" />
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-primary text-canvas-white">
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-primary text-on-dark">
                   <span className="material-symbols-outlined animate-spin text-[28px]">
                     progress_activity
                   </span>
@@ -264,7 +264,7 @@ export function SmartProductFinder() {
               </p>
               <button
                 onClick={() => runFinder(answers)}
-                className="mt-4 bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+                className="mt-4 bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
               >
                 Try again
               </button>
@@ -292,7 +292,7 @@ export function SmartProductFinder() {
                 return (
                   <div className="mb-4 border-2 border-primary bg-canvas-white">
                     <div className="flex items-center justify-between border-b border-brushed-silver bg-primary px-4 py-2">
-                      <span className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-canvas-white">
+                      <span className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-on-dark">
                         Best match for you
                       </span>
                       <span className="material-symbols-outlined text-[16px] text-leather-tan">
@@ -332,7 +332,7 @@ export function SmartProductFinder() {
                               close();
                               navigate({ view: "product", slug: p.slug });
                             }}
-                            className="bg-primary px-6 py-2.5 font-[var(--font-label)] text-[11px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+                            className="bg-primary px-6 py-2.5 font-[var(--font-label)] text-[11px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
                           >
                             View Product
                           </button>
@@ -397,7 +397,7 @@ export function SmartProductFinder() {
                     close();
                     navigate({ view: "collection" });
                   }}
-                  className="flex-1 bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white hover:bg-deep-charcoal"
+                  className="flex-1 bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-on-dark hover:bg-deep-charcoal"
                 >
                   Browse all
                 </button>

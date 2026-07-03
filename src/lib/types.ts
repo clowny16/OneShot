@@ -52,7 +52,11 @@ export type ViewName =
   | "contact"
   | "faq"
   | "shipping"
-  | "returns";
+  | "returns"
+  | "community"
+  | "login"
+  | "signup"
+  | "account";
 
 export function formatINR(paise: number): string {
   const rupees = paise / 100;

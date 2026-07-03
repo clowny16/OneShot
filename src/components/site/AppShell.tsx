@@ -17,6 +17,10 @@ import { ContactView } from "@/components/views/ContactView";
 import { FAQView } from "@/components/views/FAQView";
 import { ShippingView } from "@/components/views/ShippingView";
 import { ReturnsView } from "@/components/views/ReturnsView";
+import { CommunityView } from "@/components/views/CommunityView";
+import { LoginView } from "@/components/views/LoginView";
+import { SignupView } from "@/components/views/SignupView";
+import { AccountView } from "@/components/views/AccountView";
 import { AssistantWidget } from "@/components/site/AssistantWidget";
 import { SmartProductFinder } from "@/components/site/SmartProductFinder";
 import { CartDrawer } from "@/components/site/CartDrawer";
@@ -90,6 +94,14 @@ function renderView(view: string, productSlug: string | null) {
       return <ShippingView />;
     case "returns":
       return <ReturnsView />;
+    case "community":
+      return <CommunityView />;
+    case "login":
+      return <LoginView />;
+    case "signup":
+      return <SignupView />;
+    case "account":
+      return <AccountView />;
     default:
       return <HomeView />;
   }
