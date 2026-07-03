@@ -6,6 +6,7 @@ import { useStore } from "@/lib/store";
 import { formatINRFromRupees } from "@/lib/types";
 import { ProductImage } from "@/components/site/ProductImage";
 import { Stars } from "@/components/site/Stars";
+import { WishlistButton } from "@/components/site/WishlistButton";
 import {
   Dialog,
   DialogContent,
@@ -67,26 +68,40 @@ export function QuickView() {
                 imageKey={product.imageKey}
                 alt={product.title}
                 className="h-full w-full border-0"
+                imgClassName="transition-transform duration-500 hover:scale-105"
               />
               {product.badge && (
                 <div className="absolute left-0 top-0 bg-primary px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-canvas-white">
                   {product.badge}
                 </div>
               )}
+              {product.compareAt && product.compareAt > product.price && (
+                <div className="absolute right-0 top-0 bg-leather-tan px-3 py-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-canvas-white">
+                  -{Math.round(((product.compareAt - product.price) / product.compareAt) * 100)}%
+                </div>
+              )}
             </div>
 
             {/* Info */}
             <div className="flex max-h-[80vh] flex-col overflow-y-auto scrollbar-thin p-6">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h2 className="font-[var(--font-display)] text-[24px] font-medium uppercase leading-tight tracking-tight text-primary">
-                    {product.name}
-                  </h2>
-                  <p className="mt-1 font-[var(--font-body)] text-[14px] text-secondary">
-                    {product.tagline}
-                  </p>
-                </div>
+              {/* Product type + wishlist */}
+              <div className="flex items-center justify-between">
+                <span className="font-[var(--font-label)] text-[10px] uppercase tracking-[0.15em] font-semibold text-leather-tan">
+                  {product.productType}
+                </span>
+                <WishlistButton
+                  slug={product.slug}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-brushed-silver text-secondary hover:border-error hover:text-error"
+                  size={18}
+                />
               </div>
+
+              <h2 className="mt-2 font-[var(--font-display)] text-[24px] font-medium uppercase leading-tight tracking-tight text-primary">
+                {product.name}
+              </h2>
+              <p className="mt-1 font-[var(--font-body)] text-[14px] text-secondary">
+                {product.tagline}
+              </p>
 
               <div className="mt-3 flex items-center gap-2">
                 <Stars rating={product.rating} size={14} />
@@ -96,15 +111,18 @@ export function QuickView() {
               </div>
 
               <div className="mt-4 flex items-end gap-3">
-                <span className="font-[var(--font-display)] text-[28px] font-medium text-primary">
+                <span className="font-[var(--font-display)] text-[30px] font-medium text-primary">
                   {formatINRFromRupees(product.price)}
                 </span>
                 {product.compareAt && product.compareAt > product.price && (
-                  <span className="mb-1 font-[var(--font-body)] text-[16px] text-outline line-through">
+                  <span className="mb-1.5 font-[var(--font-body)] text-[16px] text-outline line-through">
                     {formatINRFromRupees(product.compareAt)}
                   </span>
                 )}
               </div>
+              <p className="mt-1 font-[var(--font-label)] text-[10px] uppercase tracking-[0.1em] font-semibold text-secondary">
+                Inclusive of all taxes
+              </p>
 
               {/* Color */}
               <div className="mt-4 flex items-center gap-2">
@@ -137,8 +155,11 @@ export function QuickView() {
                 <button
                   onClick={onAdd}
                   disabled={adding}
-                  className="flex-1 bg-primary px-6 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-deep-charcoal disabled:opacity-50"
+                  className="flex flex-1 items-center justify-center gap-2 bg-primary px-6 py-3.5 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all hover:bg-deep-charcoal disabled:opacity-50"
                 >
+                  <span className="material-symbols-outlined text-[18px]">
+                    {adding ? "progress_activity" : "shopping_bag"}
+                  </span>
                   {adding ? "Adding…" : "Add to Cart"}
                 </button>
                 <button
@@ -150,7 +171,7 @@ export function QuickView() {
               </div>
 
               {/* Trust */}
-              <div className="mt-5 flex items-center justify-around border-t border-brushed-silver pt-4">
+              <div className="mt-5 grid grid-cols-3 gap-2 border-t border-brushed-silver pt-4">
                 {[
                   { icon: "local_shipping", label: "Free Shipping" },
                   { icon: "swap_horiz", label: "7-Day Returns" },

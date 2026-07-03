@@ -45,7 +45,7 @@ export function ProductCard({
 
   return (
     <article
-      className="group cursor-pointer"
+      className="group cursor-pointer transition-opacity active:opacity-95"
       onClick={() => navigate({ view: "product", slug: product.slug })}
       role="button"
       tabIndex={0}

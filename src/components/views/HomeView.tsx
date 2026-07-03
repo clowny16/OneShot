@@ -60,31 +60,35 @@ export function HomeView() {
       {/* ===== Hero Slider ===== */}
       <HeroSlider />
 
-      {/* ===== Find Your Earbuds CTA ===== */}
-      <section className="border-b border-brushed-silver bg-surface-container-lowest">
-        <div className="mx-auto w-full max-w-[1440px] px-5 py-6 lg:px-16">
+      {/* ===== Find Your Audio CTA ===== */}
+      <section className="bg-deep-charcoal">
+        <div className="mx-auto w-full max-w-[1440px] px-5 py-5 lg:px-16">
           <button
             onClick={openFinder}
-            className="group flex w-full flex-col items-start justify-between gap-4 text-left sm:flex-row sm:items-center"
+            className="group relative flex w-full items-center justify-between gap-4 overflow-hidden text-left"
           >
-            <div className="flex items-center gap-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-canvas-white">
-                <span className="material-symbols-outlined text-[22px]">
+            {/* Animated gradient sheen on hover */}
+            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-leather-tan/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+            <div className="relative flex items-center gap-4">
+              <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-leather-tan/15 ring-1 ring-leather-tan/30">
+                <span className="material-symbols-outlined filled text-[24px] text-leather-tan">
                   auto_awesome
                 </span>
               </span>
               <div>
-                <p className="font-[var(--font-display)] text-[18px] font-medium text-primary sm:text-[20px]">
-                  Not sure which earbuds fit you?
+                <p className="font-[var(--font-display)] text-[16px] font-medium text-canvas-white sm:text-[19px]">
+                  Not sure which audio fits you?
                 </p>
-                <p className="font-[var(--font-body)] text-[14px] text-secondary">
-                  Take the 30-second quiz — we'll match you to the right pair.
+                <p className="font-[var(--font-body)] text-[13px] text-canvas-white/60">
+                  Take the 30-second quiz — AI matches you to the right pair.
                 </p>
               </div>
             </div>
-            <span className="flex items-center gap-2 bg-primary px-6 py-3 font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white transition-all group-hover:bg-deep-charcoal">
-              Find Your Earbuds
-              <span className="material-symbols-outlined text-[16px]">
+
+            <span className="relative flex shrink-0 items-center gap-2 rounded-full bg-canvas-white px-5 py-2.5 font-[var(--font-label)] text-[11px] uppercase tracking-[0.12em] font-semibold text-primary transition-all group-hover:bg-leather-tan group-hover:text-canvas-white">
+              Find Your Audio
+              <span className="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-0.5">
                 arrow_forward
               </span>
             </span>

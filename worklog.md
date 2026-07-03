@@ -186,3 +186,33 @@ Stage Summary:
 - New "Shop by Category" section on home with 8 category cards
 - AI assistant + Product Finder updated to be catalog-aware across all product types
 - Full storefront verified end-to-end with 31 products
+
+---
+Task ID: FIX-FAVICON-HYDRATION-UI
+Agent: main (Z.ai Code orchestrator)
+Task: Set favicon, fix Radix hydration error, fix collection filter gap, enhance Find Your Audio CTA + Quick View + general UI polish
+
+Work Log:
+- Favicon: Saved user-provided SVG (black rounded square + white "O" + tan dot) to /public/favicon.svg. Wired into layout.tsx metadata.icons (icon, shortcut, apple). Verified served as image/svg+xml HTTP 200.
+- Hydration fix: The Radix Sheet trigger in TopNavBar generated different aria-controls IDs on server vs client (radix-_R_166atmlb_ vs radix-_R_9hatmlb_), causing a hydration mismatch. Fixed by adding a `mounted` state — the mobile menu Sheet (which generates the Radix ID) only renders after mount (client-side), while a plain button renders for SSR. No more aria-controls mismatch.
+- Collection filter gap: The nav shrinks from h-20 (80px) to h-16 (64px) on scroll, but the filter bar stuck at `top-16 lg:top-20` — on desktop that's 80px, creating a 16px gap when scrolled. Fixed by changing to `top-16` (64px) consistently, matching the scrolled nav height. Verified gap = 0px.
+- Enhanced "Find Your Audio" CTA: Replaced the plain white banner with a dark deep-charcoal bar featuring a tan-ringed sparkle icon, animated gradient sheen on hover, and a pill-shaped CTA button that turns tan on hover. VLM confirmed "visually distinct and clean".
+- Enhanced nav "Find Your Earbuds" button: Changed from outlined to a solid deep-charcoal pill with a tan sparkle icon (turns white on hover to tan).
+- Enhanced Quick View modal: Added discount % badge on the image, productType label at top, wishlist heart button, shopping_bag icon on Add to Cart, "Inclusive of all taxes" note, and image zoom-on-hover. VLM confirmed all enhancements present and layout clean.
+- Enhanced ProductCard: Added subtle active:opacity-95 press feedback.
+- Lint: 0 errors (1 benign font warning). Dev log: clean. Browser: 0 hydration errors, 0 console errors.
+
+Agent Browser verification:
+- Favicon: 3 link tags (icon/shortcut/apple) all point to /favicon.svg, served image/svg+xml HTTP 200
+- Hydration: 0 errors in browser errors panel, 0 hydration warnings in console
+- Collection filter gap: measured navBottom=64, filterTop=64, gap=0 (was 16px before)
+- CTA banner: VLM confirmed "dark charcoal banner, sparkle icon, FIND YOUR AUDIO button, visually distinct and clean"
+- Quick View: VLM confirmed "-27% discount badge, EARBUDS product type label, wishlist heart, cart icon on Add to Cart, layout clean"
+
+Stage Summary:
+- Favicon set (SVG, black/tan/white matching brand)
+- Radix hydration error fixed (mounted guard for mobile Sheet)
+- Collection filter sticky gap fixed (top-16 consistent)
+- Find Your Audio CTA + nav button + Quick View all enhanced
+- General UI polish applied
+- All verified in browser with 0 errors

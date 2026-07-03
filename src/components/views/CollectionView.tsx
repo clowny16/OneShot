@@ -148,8 +148,10 @@ export function CollectionView() {
         </div>
       </section>
 
-      {/* Filter bar */}
-      <section className="sticky top-16 z-30 border-b border-brushed-silver bg-canvas-white/95 backdrop-blur lg:top-20">
+      {/* Filter bar — sticks at top-16 (64px) to match the scrolled nav height
+          (nav shrinks from h-20 to h-16 on scroll, so by the time the filter
+          reaches the top the nav is always 64px) */}
+      <section className="sticky top-16 z-30 border-b border-brushed-silver bg-canvas-white/95 backdrop-blur">
         <div className="mx-auto w-full max-w-[1440px] px-5 py-3 lg:px-16">
           {/* Primary: product type chips */}
           <div className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">

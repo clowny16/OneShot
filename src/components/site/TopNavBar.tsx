@@ -31,6 +31,7 @@ export function TopNavBar() {
   const wishlistCount = useStore((s) => s.wishlist.length);
   const view = useStore((s) => s.view);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -42,6 +43,11 @@ export function TopNavBar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
   }, []);
 
   const itemCount = cart?.itemCount ?? 0;
@@ -97,9 +103,9 @@ export function TopNavBar() {
               setMenuOpen(false);
               openFinder();
             }}
-            className="flex items-center gap-1.5 border border-primary px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-primary transition-colors hover:bg-primary hover:text-canvas-white"
+            className="group flex items-center gap-1.5 rounded-full bg-deep-charcoal px-4 py-2 font-[var(--font-label)] text-[11px] uppercase tracking-[0.1em] font-semibold text-canvas-white transition-all hover:bg-leather-tan"
           >
-            <span className="material-symbols-outlined text-[16px]">
+            <span className="material-symbols-outlined filled text-[16px] text-leather-tan transition-colors group-hover:text-canvas-white">
               auto_awesome
             </span>
             Find Your Earbuds
@@ -154,53 +160,65 @@ export function TopNavBar() {
             )}
           </button>
 
-          {/* Mobile menu */}
-          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-            <SheetTrigger asChild>
-              <button
-                className="lg:hidden transition-opacity active:opacity-70"
-                aria-label="Open menu"
-              >
-                <span className="material-symbols-outlined text-primary">
-                  menu
-                </span>
-              </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[320px] bg-canvas-white">
-              <SheetHeader>
-                <SheetTitle className="text-left font-[var(--font-display)] text-2xl uppercase tracking-tighter">
-                  OneShot<span className="text-leather-tan">.</span>
-                </SheetTitle>
-              </SheetHeader>
-              <div className="mt-8 flex flex-col gap-1">
-                {[
-                  { label: "Home", v: { view: "home" } as const },
-                  { label: "Collections", v: { view: "collection" } as const },
-                  { label: "About Us", v: { view: "about" } as const },
-                  { label: "FAQ", v: { view: "faq" } as const },
-                  { label: "Shipping & Delivery", v: { view: "shipping" } as const },
-                  { label: "Returns & Refunds", v: { view: "returns" } as const },
-                  { label: "Contact Us", v: { view: "contact" } as const },
-                ].map((item) => (
-                  <button
-                    key={item.label}
-                    onClick={() => go(item.v)}
-                    className="border-b border-brushed-silver py-4 text-left font-[var(--font-display)] text-lg uppercase tracking-tight text-primary transition-colors hover:text-leather-tan"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-              <div className="mt-8">
+          {/* Mobile menu — render Sheet only after mount to avoid Radix
+              aria-controls hydration mismatch (server/client ID divergence) */}
+          {mounted ? (
+            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+              <SheetTrigger asChild>
                 <button
-                  onClick={() => go({ view: "cart" })}
-                  className="w-full bg-primary py-4 text-center font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white"
+                  className="lg:hidden transition-opacity active:opacity-70"
+                  aria-label="Open menu"
                 >
-                  View Cart ({itemCount})
+                  <span className="material-symbols-outlined text-primary">
+                    menu
+                  </span>
                 </button>
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[320px] bg-canvas-white">
+                <SheetHeader>
+                  <SheetTitle className="text-left font-[var(--font-display)] text-2xl uppercase tracking-tighter">
+                    OneShot<span className="text-leather-tan">.</span>
+                  </SheetTitle>
+                </SheetHeader>
+                <div className="mt-8 flex flex-col gap-1">
+                  {[
+                    { label: "Home", v: { view: "home" } as const },
+                    { label: "Collections", v: { view: "collection" } as const },
+                    { label: "About Us", v: { view: "about" } as const },
+                    { label: "FAQ", v: { view: "faq" } as const },
+                    { label: "Shipping & Delivery", v: { view: "shipping" } as const },
+                    { label: "Returns & Refunds", v: { view: "returns" } as const },
+                    { label: "Contact Us", v: { view: "contact" } as const },
+                  ].map((item) => (
+                    <button
+                      key={item.label}
+                      onClick={() => go(item.v)}
+                      className="border-b border-brushed-silver py-4 text-left font-[var(--font-display)] text-lg uppercase tracking-tight text-primary transition-colors hover:text-leather-tan"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-8">
+                  <button
+                    onClick={() => go({ view: "cart" })}
+                    className="w-full bg-primary py-4 text-center font-[var(--font-label)] text-[12px] uppercase tracking-[0.15em] font-semibold text-canvas-white"
+                  >
+                    View Cart ({itemCount})
+                  </button>
+                </div>
+              </SheetContent>
+            </Sheet>
+          ) : (
+            <button
+              className="lg:hidden transition-opacity active:opacity-70"
+              aria-label="Open menu"
+            >
+              <span className="material-symbols-outlined text-primary">
+                menu
+              </span>
+            </button>
+          )}
         </div>
       </div>
     </nav>

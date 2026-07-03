@@ -37,6 +37,11 @@ export const metadata: Metadata = {
     "ANC earbuds",
     "sports earbuds",
   ],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   authors: [{ name: "OneShot" }],
   openGraph: {
     title: "OneShot | Wireless Earbuds Engineered for Everyday Sound",
