@@ -1,4 +1,9 @@
 import { PrismaClient } from '@prisma/client'
+import path from 'path'
+
+// Dynamically resolve SQLite database path relative to process.cwd()
+const dbPath = path.join(process.cwd(), 'prisma', 'custom.db')
+const databaseUrl = `file:${dbPath}`
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
@@ -7,6 +12,11 @@ const globalForPrisma = globalThis as unknown as {
 export const db =
   globalForPrisma.prisma ??
   new PrismaClient({
+    datasources: {
+      db: {
+        url: databaseUrl,
+      },
+    },
     log: ['query'],
   })
 
