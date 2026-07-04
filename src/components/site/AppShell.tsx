@@ -21,7 +21,6 @@ import { CommunityView } from "@/components/views/CommunityView";
 import { LoginView } from "@/components/views/LoginView";
 import { SignupView } from "@/components/views/SignupView";
 import { AccountView } from "@/components/views/AccountView";
-import { AssistantWidget } from "@/components/site/AssistantWidget";
 import { SmartProductFinder } from "@/components/site/SmartProductFinder";
 import { CartDrawer } from "@/components/site/CartDrawer";
 import { WishlistDrawer } from "@/components/site/WishlistDrawer";
@@ -67,7 +66,6 @@ export function AppShell({ products }: { products: ProductDTO[] }) {
       <WishlistDrawer />
       <QuickView />
       <SmartProductFinder />
-      <AssistantWidget />
     </div>
   );
 }
